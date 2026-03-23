@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>도핑랩</title>
+  <meta name="description" content="매일 아침 AI 경제 분석과 딥리서치 투자 리포트">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <style>
+/* ═══════════════════════════════════════════════════════
+   DOPPING LAB — Premium Korean Newsletter Theme
+   Based on reference newsletter design
+   ═══════════════════════════════════════════════════════ */
+
+/* ── CSS Variables ── */
+:root {
+  --bg: #faf7f2;
+  --bg-card: #ffffff;
+  --bg-warm: #f7efe5;
+  --amber: #c47d4a;
+  --amber-dk: #a35c2a;
+  --amber-lt: #eed9c2;
+  --amber-xlt: #fdf3e7;
+  --teal: #6ba8a3;
+  --teal-lt: #d0ecea;
+  --sage: #7a9e7e;
+  --sage-lt: #d4e8d4;
+  --purple: #7a62b0;
+  --purple-lt: #e4d8f4;
+  --brown: #3a2e24;
+  --brown-md: #7a6b5f;
+  --brown-lt: #b5a89e;
+  --border: #e6dcd2;
+  --sd: 0 2px 16px rgba(58,46,36,.07);
+  --sd2: 0 4px 28px rgba(58,46,36,.11);
+  --r: 14px;
+}
+
+/* ── Emoji replacement dots ── */
+.dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.dot-red { background-color: #dc2626; }
+.dot-yellow { background-color: #d97706; }
+.dot-green { background-color: #16a34a; }
+
+/* ── Glass nav on scroll ── */
+.nav-glass {
+  background: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Content wrapper — newsletter width ── */
+.nl-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ── Header banner image ── */
+.header-banner {
+  width: 100%;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--sd);
+}
+.header-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ══════════════════════════════════════
+   SECTION HEADER — dot + title + rule
+   ══════════════════════════════════════ */
+.sh {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+.sh-dot {
+  width: 7px; height: 7px;
+  background: var(--amber);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sh-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--brown-md);
+  white-space: nowrap;
+}
+.sh-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ══════════════════════════════════════
+   GREETING CARD
+   ══════════════════════════════════════ */
+.greeting {
+  background: var(--bg-warm);
+  border-left: 3.5px solid var(--amber);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+.g-date {
+  font-size: 11px;
+  color: var(--brown-lt);
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+}
+.g-text {
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--brown);
+  font-weight: 300;
+}
+
+/* ══════════════════════════════════════
+   STICKY TABS with animated underline
+   ══════════════════════════════════════ */
+.nl-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: rgba(250,247,242,.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  margin: 0 -20px;
+  padding: 0 20px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 14px 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brown-lt);
+  position: relative;
+  transition: color .22s;
+  letter-spacing: .02em;
+}
+.tab-btn.active { color: var(--brown); }
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  right: 50%;
+  height: 2.5px;
+  background: var(--amber);
+  border-radius: 2px 2px 0 0;
+  transition: left .25s cubic-bezier(.4,0,.2,1), right .25s cubic-bezier(.4,0,.2,1);
+}
+.tab-btn.active::after {
+  left: 12%;
+  right: 12%;
+}
+
+/* ══════════════════════════════════════
+   PANELS — fade-up animation
+   ══════════════════════════════════════ */
+.tab-content {
+  animation: fadeUp .35s ease;
+}
+.tab-content:not(.hidden) {
+  animation: fadeUp .35s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   MARKET BRIEFING CARD
+   ══════════════════════════════════════ */
+.mkt-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  margin-bottom: 28px;
+  box-shadow: var(--sd);
+}
+.mkt-card .md-content p {
+  font-size: 13.8px;
+  line-height: 2.15;
+  color: var(--brown-md);
+}
+.mkt-card .md-content strong {
+  color: var(--brown);
+}
+
+/* ── Swiper pagination ── */
+.swiper-pagination-bullet {
+  background: #d1cdc4 !important;
+  opacity: 1 !important;
+  width: 7px !important;
+  height: 7px !important;
+}
+.swiper-pagination-bullet-active {
+  background: var(--amber) !important;
+  width: 22px !important;
+  border-radius: 4px !important;
+}
+
+/* ── Swiper external controls ── */
+.swiper-outer .swiper {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--sd);
+}
+[class^="swiper-slide-v"] .swiper-slide img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  background: #F0EDE6;
+  border-radius: 12px;
+}
+.swiper-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.swiper-btn-prev,
+.swiper-btn-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--amber);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.swiper-btn-prev:hover,
+.swiper-btn-next:hover {
+  background: var(--amber);
+  color: white;
+  border-color: var(--amber);
+  box-shadow: 0 4px 12px rgba(196,125,74,0.25);
+}
+.swiper-btn-prev.swiper-button-disabled,
+.swiper-btn-next.swiper-button-disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.swiper-controls .swiper-pagination {
+  position: static !important;
+  width: auto !important;
+}
+
+/* ── Version tag ── */
+.ver-tag {
+  display: inline-block;
+  background: var(--amber-lt);
+  color: var(--amber-dk);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+/* ══════════════════════════════════════
+   SHORTS SWIPER (YouTube)
+   ══════════════════════════════════════ */
+.swiper-shorts .short-item {
+  border-radius: 11px;
+  overflow: hidden;
+  aspect-ratio: 9/16;
+  position: relative;
+  box-shadow: 0 4px 18px rgba(0,0,0,.15);
+  width: 100%;
+  max-height: 500px;
+}
+.swiper-shorts .short-item iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ══════════════════════════════════════
+   MARKDOWN CONTENT (warm typography)
+   ══════════════════════════════════════ */
+.md-content h1 {
+  font-size: 1.35rem; font-weight: 700; color: var(--brown);
+  margin: 2rem 0 1rem; padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.md-content h2 {
+  font-size: 1.15rem; font-weight: 700; color: var(--brown);
+  margin: 1.75rem 0 0.75rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.md-content h2::before {
+  content: '';
+  width: 4px; height: 18px;
+  background: var(--amber);
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.md-content h3 {
+  font-size: 1.05rem; font-weight: 600; color: var(--amber-dk);
+  margin: 1.5rem 0 0.5rem;
+}
+.md-content p {
+  margin: 0.625rem 0; line-height: 1.95; color: var(--brown-md);
+  word-break: keep-all;
+}
+.md-content ul, .md-content ol {
+  margin: 0.75rem 0 0.75rem 1.25rem; color: var(--brown-md);
+  list-style-position: outside;
+}
+.md-content ul { list-style-type: disc; }
+.md-content ol { list-style-type: decimal; }
+.md-content li {
+  margin: 0.5rem 0; line-height: 1.9;
+  padding-left: 0.25rem;
+}
+.md-content li > ul, .md-content li > ol {
+  margin-top: 0.25rem; margin-bottom: 0.25rem;
+}
+.md-content code {
+  background: rgba(196,125,74,0.08); border: 1px solid rgba(196,125,74,0.15);
+  padding: 1px 5px; border-radius: 3px; font-size: 0.85em; color: var(--amber-dk);
+  font-family: 'Pretendard', system-ui, sans-serif; font-weight: 500;
+}
+.md-content pre {
+  background: var(--bg-warm); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1rem; overflow-x: auto; margin: 1rem 0;
+}
+.md-content pre code {
+  background: none; border: none; padding: 0; color: var(--brown);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+.md-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; border-radius: 10px; overflow: hidden; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.md-content th {
+  background: var(--bg-warm); padding: 7px 9px; text-align: left;
+  font-weight: 600; color: var(--brown); border-bottom: 2px solid var(--border);
+  font-size: 0.75rem; white-space: nowrap;
+}
+.md-content td {
+  padding: 6px 9px; border-bottom: 1px solid var(--border);
+  color: var(--brown-md); font-size: 0.78rem; line-height: 1.5;
+}
+.md-content tr:last-child td { border-bottom: none; }
+.md-content strong { color: var(--brown); font-weight: 600; }
+.md-content em { color: var(--brown-lt); font-style: italic; }
+.md-content blockquote {
+  border-left: 3px solid var(--amber); margin: 1rem 0; padding: 0.75rem 1rem;
+  background: var(--amber-xlt); border-radius: 0 10px 10px 0;
+}
+.md-content blockquote p { color: var(--brown); margin: 0.25rem 0; }
+.md-content hr {
+  border: none; height: 1px; margin: 1.5rem 0;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.md-content a { color: var(--amber); text-decoration: underline; text-underline-offset: 2px; }
+.md-content a:hover { color: var(--amber-dk); }
+.md-content mark {
+  background: rgba(196,125,74,0.12); color: var(--brown);
+  padding: 0 4px; border-radius: 3px;
+}
+.md-content img { max-width: 100%; border-radius: 8px; margin: 0.75rem 0; }
+
+/* ══════════════════════════════════════
+   ACCORDION (full analysis)
+   ══════════════════════════════════════ */
+.accordion-section {
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bg-card);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--sd);
+}
+.accordion-section[open] {
+  border-color: rgba(196,125,74,0.3);
+  box-shadow: var(--sd2);
+}
+.accordion-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--amber-dk);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  transition: background 0.2s;
+}
+.accordion-title:hover {
+  background: rgba(196,125,74,0.03);
+}
+.accordion-title::-webkit-details-marker { display: none; }
+.accordion-title-text { flex: 1; }
+.accordion-arrow {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: rgba(196,125,74,0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.accordion-arrow::after {
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid var(--amber);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.accordion-section:not([open]) .accordion-arrow::after {
+  transform: rotate(-90deg);
+}
+.accordion-section[open] .accordion-arrow {
+  background: rgba(196,125,74,0.15);
+}
+.accordion-body {
+  padding: 0 22px 22px;
+  border-top: 1px solid var(--border);
+}
+
+/* Full analysis sub-headings highlight */
+.accordion-body.md-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brown);
+  padding: 4px 0;
+  margin: 1.75rem 0 0.75rem;
+  background: linear-gradient(transparent 55%, rgba(196,125,74,0.12) 55%);
+  display: inline;
+  line-height: 2;
+}
+
+/* ── Deep research card ── */
+.newsletter-tab-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--sd);
+}
+
+/* ── Newsletter dividers ── */
+.newsletter-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  color: var(--brown-lt);
+  font-size: 0.75rem;
+  letter-spacing: 0.5em;
+}
+.newsletter-divider::before,
+.newsletter-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border));
+  max-width: 120px;
+}
+.newsletter-divider::after {
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+.newsletter-divider::before {
+  margin-right: 12px;
+}
+.newsletter-divider::after {
+  margin-left: 12px;
+}
+
+/* ══════════════════════════════════════
+   SCROLL TO TOP
+   ══════════════════════════════════════ */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--amber);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sd2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity .25s, transform .25s, background .2s;
+  z-index: 95;
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.scroll-top-btn:hover {
+  background: var(--amber);
+  color: white;
+  border-color: var(--amber);
+}
+@media print {
+  .scroll-top-btn { display: none !important; }
+}
+
+/* ══════════════════════════════════════
+   PRINT BUTTON & MODAL
+   ══════════════════════════════════════ */
+.print-btn-wrap {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+.print-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--brown-lt);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.print-toggle-btn:hover {
+  color: var(--amber);
+  border-color: rgba(196,125,74,0.3);
+  box-shadow: 0 2px 8px rgba(196,125,74,0.12);
+}
+.print-modal {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  z-index: 50;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  min-width: 200px;
+  box-shadow: 0 8px 32px rgba(58,46,36,0.1), 0 2px 8px rgba(0,0,0,0.04);
+}
+.print-modal-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brown-md);
+  margin-bottom: 12px;
+  letter-spacing: .02em;
+}
+.print-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.875rem;
+  color: var(--brown);
+  cursor: pointer;
+}
+.print-checkbox-label input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: var(--amber);
+  cursor: pointer;
+  border-radius: 4px;
+}
+.print-exec-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 0;
+  background: var(--amber);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.print-exec-btn:hover {
+  background: var(--amber-dk);
+}
+
+/* ══════════════════════════════════════
+   PRINT STYLES
+   ══════════════════════════════════════ */
+@media print {
+  nav, footer,
+  .nl-tabs, .print-btn-wrap, .print-modal,
+  .swiper-controls, .swiper-pagination,
+  .swiper-btn-prev, .swiper-btn-next,
+  .sample-banner,
+  #statusMsg,
+  .nav-glass,
+  button#btnTestSend, button#btnSendAll,
+  a[href*="/admin/edit"] {
+    display: none !important;
+  }
+
+  .flex.gap-2.text-sm.font-semibold.mb-8,
+  .flex.gap-8.text-sm.font-semibold.border-b {
+    display: none !important;
+  }
+
+  .mt-12.border-t.border-gray-200.pt-6 {
+    display: none !important;
+  }
+
+  .bg-gold-400\/10.border.border-gold-400\/20.rounded-xl {
+    display: none !important;
+  }
+
+  html, body {
+    background: white !important;
+    color: var(--brown) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-content-root {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .print-section-hidden {
+    display: none !important;
+  }
+  .print-section-visible {
+    display: block !important;
+    page-break-before: always;
+  }
+  .print-section-visible:first-of-type {
+    page-break-before: avoid;
+  }
+
+  .accordion-section {
+    break-inside: avoid;
+    border: 1px solid var(--border) !important;
+    box-shadow: none !important;
+  }
+  .accordion-section[open] .accordion-body,
+  .accordion-body {
+    display: block !important;
+  }
+
+  .md-content p, .md-content li, .md-content td {
+    color: #292524 !important;
+  }
+  .md-content h1, .md-content h2, .md-content h3 {
+    color: #1c1917 !important;
+  }
+  .md-content strong { color: #0c0a09 !important; }
+
+  .summary-card, .greeting, .mkt-card {
+    background: #f9f7f3 !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: none !important;
+  }
+
+  .header-banner {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  @page {
+    margin: 1.5cm 2cm;
+  }
+
+  img {
+    max-width: 100% !important;
+    break-inside: avoid;
+  }
+
+  .md-content a { color: #1c1917 !important; }
+}
+
+</style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard', 'system-ui', 'sans-serif'] },
+          colors: {
+            carbon: { 950: '#FDFBF7', 900: '#F8F5EF', 800: '#F0EDE6', 700: '#E3DFD7' },
+            gold: { 400: '#b8860b', 500: '#a07608', 600: '#8a6507' }
+          }
+        },
+      },
+    }
+  </script>
+  
+</head>
+<body class="bg-carbon-950 text-gray-900 min-h-[100dvh]" style="word-break: keep-all;">
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#" class="text-sm font-bold tracking-tight text-gold-400">DOPPING LAB</a>
+
+      
+      <span class="text-sm text-gray-500">2026-03-24</span>
+      
+    </div>
+  </div>
+</nav>
+  <main>
+    
+
+<div class="pt-20 max-w-3xl mx-auto px-5 pb-16 print-content-root" style="background:var(--bg);">
+
+  <!-- HEADER BANNER (최상단) -->
+  <div class="header-banner mb-4">
+    <img src="img/header.png" alt="도핑랩" loading="eager">
+  </div>
+
+  <!-- PRINT BUTTON -->
+  <div class="print-btn-wrap">
+    <button id="printToggleBtn" class="print-toggle-btn" title="인쇄">
+      <iconify-icon icon="solar:printer-linear" width="20"></iconify-icon>
+    </button>
+    <div id="printModal" class="print-modal hidden">
+      <div class="print-modal-title">인쇄할 섹션 선택</div>
+      <label class="print-checkbox-label"><input type="checkbox" value="briefing" checked><span>브리핑</span></label>
+      <label class="print-checkbox-label"><input type="checkbox" value="deepresearch" checked><span>딥리서치</span></label>
+      <label class="print-checkbox-label"><input type="checkbox" value="fullanalysis-all" checked><span>전체문서 (전체)</span></label>
+      <label class="print-checkbox-label"><input type="checkbox" value="fullanalysis-current"><span>전체문서 (선택)</span></label>
+      <button id="printExecBtn" class="print-exec-btn">출력</button>
+    </div>
+  </div>
+
+  <!-- SAMPLE BANNER -->
+  
+  <div class="bg-gold-400/10 border border-gold-400/20 rounded-xl px-5 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
+    <div>
+      <span class="text-sm text-gold-400 font-semibold">샘플 콘텐츠입니다</span>
+      <span class="text-xs text-gray-500 ml-2">이런 분석이 매일 아침 이메일로 도착합니다.</span>
+    </div>
+    <a href="https://buy.polar.sh/polar_cl_7TcYSreZnoBNfk4rVW2uadGV7nDiN6QN3uEJh0PJ56J" class="bg-gold-400 text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-gold-500 transition shrink-0">구독하기</a>
+  </div>
+  
+
+  <!-- STICKY TAB NAVIGATION -->
+  <div class="nl-tabs">
+    <button class="tab-btn active" data-tab="briefing">브리핑</button>
+    <button class="tab-btn" data-tab="deepresearch">딥리서치</button>
+    <button class="tab-btn" data-tab="fullanalysis">전체분석</button>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB: BRIEFING
+       ══════════════════════════════════ -->
+  <div id="tab-briefing" class="tab-content" style="padding-top:26px;">
+
+    <!-- Section Header: 오늘의 시장 브리핑 -->
+    <div class="sh">
+      <span class="sh-dot"></span>
+      <span class="sh-title">오늘의 시장 브리핑</span>
+      <span class="sh-rule"></span>
+    </div>
+
+    <!-- Greeting card -->
+    <div class="greeting">
+      <div class="g-date">TODAY'S BRIEF — 2026-03-24</div>
+      <div class="g-text">안녕하세요!
+오늘도 행복한 하루 되세요!</div>
+    </div>
+
+    <!-- Market briefing card -->
+    <div class="mkt-card">
+      <div class="md-content">
+        <h2>오늘의 투자 핵심 요약 (2026년 3월 24일)</h2>
+<p>안녕하세요, 오늘 시장은 예측 불허의 지정학적 리스크와 AI 혁명의 뜨거운 열기가 뒤섞인 하루였습니다. 놓치면 안 될 3가지 핵심 이슈, 바로 확인하시죠.</p>
+<p><strong><span class="dot dot-red"></span> 중동 전쟁 위기 고조 &amp; 유가 롤러코스터</strong></p>
+<p>미국-이란 갈등이 최고조에 달하며 코스피 <strong>5%</strong> 폭락! 💥 트럼프 "대화 진전" 발표에 유가가 잠시 급락했지만, 이란의 즉각적인 부인으로 시장은 혼돈에 빠졌습니다. 브렌트유는 한때 배럴당 <strong>114달러</strong>까지 치솟았다가 10% 급락, <strong>100달러</strong> 선이 무너졌습니다.
+석유 생산자들은 20년 만에 최대 규모인 <strong>1926억 달러</strong>의 숏 포지션! 🤔 전쟁 리스크에도 유가가 하락한 이유는 뭘까요? 시장은 지금 극도의 불안에 휩싸여 있습니다.</p>
+<p><strong><span class="dot dot-green"></span> AI 혁명, NVIDIA를 넘어 AMD로?</strong></p>
+<p>젠슨 황 "AI가 세상을 바꾼다" 🎤 AI가 프로그래밍 인구를 10억 명으로! 한편, AMD가 한국 업스테이지 AI에 1만 개 이상의 AI 가속기 공급 논의! 엔비디아 독주 체제에 균열이 생길까요? 😲 Tesla는 자체 AI 칩 생산 위해 대규모 공장 건설 돌입! AI는 거스를 수 없는 대세입니다.</p>
+<p><strong><span class="dot dot-yellow"></span> 금, 안전 자산 지위 흔들리나?</strong></p>
+<p>전쟁 위기에 금 가격 72시간 만에 $4520 → $4100 폭락! 📉 전통적인 안전 자산의 역할이 흔들리고 있습니다. 헤지펀드의 대규모 숏 포지션, 채권 금리 상승 등이 원인으로 분석됩니다. 금 ETF는 한 주 만에 11% 폭락하며 1983년 이후 최악의 주간 하락률 기록! 🤔</p>
+<hr />
+<p><strong>이번 주 주목할 것</strong></p>
+<ul>
+<li>미국-이란 대화 진전 여부: 중동 정세는 예측 불허. 4월 9일이 분수령이 될 수도?</li>
+<li>AI 기업들의 실적 발표: 옥석 가리기가 시작될 것.</li>
+<li>각국 중앙은행 통화 정책 발표: 금리 향방에 따라 시장이 요동칠 수 있습니다.</li>
+</ul>
+      </div>
+    </div>
+
+    <!-- Section Header: 오늘의 인사이트 카드 -->
+    
+    <div class="sh">
+      <span class="sh-dot"></span>
+      <span class="sh-title">오늘의 인사이트 카드</span>
+      <span class="sh-rule"></span>
+    </div>
+
+    <!-- SWIPER: Slides (dynamic versions) -->
+    
+    <div class="mb-8 swiper-outer">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
+        <span class="ver-tag">ver1</span>
+      </div>
+      <div class="swiper swiper-slide-v1">
+        <div class="swiper-wrapper">
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-01.png?" alt="슬라이드 ver1-1" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-02.png?" alt="슬라이드 ver1-2" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-03.png?" alt="슬라이드 ver1-3" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-04.png?" alt="슬라이드 ver1-4" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-05.png?" alt="슬라이드 ver1-5" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-06.png?" alt="슬라이드 ver1-6" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-07.png?" alt="슬라이드 ver1-7" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-08.png?" alt="슬라이드 ver1-8" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-09.png?" alt="슬라이드 ver1-9" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-10.png?" alt="슬라이드 ver1-10" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-11.png?" alt="슬라이드 ver1-11" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-01-Img-12.png?" alt="슬라이드 ver1-12" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+        </div>
+      </div>
+      <div class="swiper-controls">
+        <button class="swiper-btn-prev swiper-prev-v1" aria-label="이전"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <div class="swiper-pagination swiper-pagination-v1"></div>
+        <button class="swiper-btn-next swiper-next-v1" aria-label="다음"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+      </div>
+    </div>
+    
+    <div class="newsletter-divider"></div>
+    
+    
+    <div class="mb-8 swiper-outer">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
+        <span class="ver-tag">ver2</span>
+      </div>
+      <div class="swiper swiper-slide-v2">
+        <div class="swiper-wrapper">
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-01.png?" alt="슬라이드 ver2-1" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-02.png?" alt="슬라이드 ver2-2" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-03.png?" alt="슬라이드 ver2-3" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-04.png?" alt="슬라이드 ver2-4" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-05.png?" alt="슬라이드 ver2-5" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-06.png?" alt="슬라이드 ver2-6" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-08.png?" alt="슬라이드 ver2-7" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+          <div class="swiper-slide">
+            <img src="https://iockagddudemhkfevjpp.supabase.co/storage/v1/object/public/slides/2026-03-24/Slide-02-Img-09.png?" alt="슬라이드 ver2-8" class="w-full rounded-lg" loading="lazy" decoding="async">
+          </div>
+          
+        </div>
+      </div>
+      <div class="swiper-controls">
+        <button class="swiper-btn-prev swiper-prev-v2" aria-label="이전"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <div class="swiper-pagination swiper-pagination-v2"></div>
+        <button class="swiper-btn-next swiper-next-v2" aria-label="다음"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+      </div>
+    </div>
+    
+    
+    
+
+    <!-- Section Header: 오늘의 쇼츠 -->
+    
+    <div class="sh" style="margin-top:32px;">
+      <span class="sh-dot"></span>
+      <span class="sh-title">오늘의 쇼츠</span>
+      <span class="sh-rule"></span>
+    </div>
+
+    <!-- YouTube Shorts Swiper -->
+    <div class="swiper-outer">
+      <div class="swiper swiper-shorts">
+        <div class="swiper-wrapper">
+          
+          <div class="swiper-slide">
+            <div class="short-item">
+              <iframe src="https://www.youtube.com/embed/HsxCF8Zikq8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="short-item">
+              <iframe src="https://www.youtube.com/embed/-4CGjgLmAHE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="short-item">
+              <iframe src="https://www.youtube.com/embed/fKUYHITOR8o" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="short-item">
+              <iframe src="https://www.youtube.com/embed/pnkqzS6VzKE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="swiper-controls">
+        <button class="swiper-btn-prev swiper-prev-shorts" aria-label="이전"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <div class="swiper-pagination swiper-pagination-shorts"></div>
+        <button class="swiper-btn-next swiper-next-shorts" aria-label="다음"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+      </div>
+    </div>
+    
+
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB: DEEP RESEARCH
+       ══════════════════════════════════ -->
+  <div id="tab-deepresearch" class="tab-content hidden" style="padding-top:26px;">
+    <div class="sh">
+      <span class="sh-dot"></span>
+      <span class="sh-title">딥리서치</span>
+      <span class="sh-rule"></span>
+    </div>
+    <div class="newsletter-tab-card p-6 md:p-8">
+      <div class="md-content">
+        <h1>전쟁·인플레이션·유동성 위기가 동시에 온다</h1>
+<p><strong>2026년 3월 24일 기준 | 글로벌 투자 딥리서치 보고서</strong></p>
+<hr />
+<p>미국-이란 전쟁 24일차, 호르무즈 해협 사실상 봉쇄로 <strong>역사상 최대 규모의 원유 공급 차질</strong>이 현실화됐다. 브렌트유는 전쟁 전 $65에서 $114까지 치솟았다가 트럼프의 5일간 공격 중단 발표 후 하루 만에 14% 폭락하며 $99 아래로 내려앉았다. IEA 사무총장 파티흐 비롤은 3월 23일 <strong>"1970년대 두 차례 석유위기와 2022년 가스 위기를 합친 것보다 더 심각한 에너지 위기"</strong>라고 경고했다. 금은 사상 최고치 대비 20% 이상 하락해 약세장에 진입했고, 코스피는 하루 만에 -6.49% 폭락했다. 모든 주요 중앙은행이 인플레이션 대응을 위해 매파적으로 전환하면서, 안전자산마저 작동하지 않는 <strong>'모든 것이 동시에 무너지는' 유동성 위기 국면</strong>이 전개되고 있다.</p>
+<hr />
+<h2>1. 지정학적 위기: 전쟁 4주차, 외교와 군사의 줄다리기</h2>
+<h3>현재 상황 (3월 24일 기준)</h3>
+<p>2월 28일 미국과 이스라엘이 <strong>"에픽 퓨리 작전(Operation Epic Fury)"</strong>으로 이란을 타격한 지 24일이 경과했다. 최고 지도자 하메네이가 첫날 사망하고 아들 모즈타바 하메네이가 후계자로 지명됐다. 미 중부사령부(CENTCOM)는 전쟁 개시 이래 <strong>8,000개 이상의 이란 표적을 타격</strong>했으며, 이는 2003년 이라크 침공 이후 중동 최대 규모의 군사작전이다.</p>
+<p>3월 21일(토) 트럼프 대통령은 Truth Social에 <strong>48시간 최후통첩</strong>을 발표해 이란에 호르무즈 해협 재개방을 요구하며 거부 시 발전소를 "소멸시키겠다"고 위협했다. 이란은 미국 기지에 전력을 공급하는 발전소에 대한 보복 타격과 호르무즈 해협 <strong>무기한 완전 봉쇄</strong>로 맞섰다. 그러나 3월 23일(월) 오전 7:05(동부시간), 트럼프는 돌연 입장을 번복해 <strong>"생산적인 대화"를 근거로 5일간 공격 중단</strong>을 선언했다. 특사 스티브 위트코프와 재러드 쿠슈너가 관여했다고 밝혔다.</p>
+<p>이란은 즉각 부인했다. 외교부는 메흐르 통신을 통해 <strong>"테헤란과 워싱턴 간 대화는 없다"</strong>며, 트럼프의 발언을 <strong>"에너지 가격 하락과 군사 계획 실행을 위한 시간 벌기"</strong>로 규정했다. 이 상충되는 메시지가 3월 23일 글로벌 시장의 극심한 변동성을 촉발했다.</p>
+<h3>호르무즈 해협: 글로벌 에너지의 목줄</h3>
+<p>호르무즈 해협은 전쟁 개시 이래 <strong>사실상 폐쇄</strong> 상태다. 이란 혁명수비대(IRGC)는 VHF로 항행 금지를 방송하고 있으며, 3월 1일 이후 <strong>상선 21척이 공격</strong>을 받았고 <strong>150척 이상의 화물선이 좌초</strong>됐다. 유조선 통행량은 약 <strong>70% 급감</strong>했다. 정상 시 일일 약 2,000만 배럴의 원유와 석유제품이 통과하던 이 해협이 막히면서, IEA는 글로벌 석유 시장에서 <strong>일일 1,100만 배럴이 사라졌다</strong>고 집계했다.</p>
+<p>이란은 <strong>조건부 개방</strong>을 제안해 비적대국 선박의 조율된 통과를 허용하겠다고 했으며, 중국·인도·터키가 자국 선박의 통과를 확보한 것으로 알려졌다. 일본·프랑스·이탈리아도 협상 중이다. 한국은 청해부대를 경계태세에 돌입시켰으며, 해역 내 한국 선박 26척은 현재까지 안전한 상태다.</p>
+<h3>시나리오별 시장 영향</h3>
+<table>
+<thead>
+<tr>
+<th>시나리오</th>
+<th>핵심 조건</th>
+<th>브렌트유 전망</th>
+<th>시장 영향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>낙관</strong> (확률 20%)</td>
+<td>5일 내 실질 외교 진전, 해협 4월 중 부분 재개방</td>
+<td>$70~80</td>
+<td>S&amp;P 500 +5~8% 반등, 코스피 6,000 회복, 금 재상승</td>
+</tr>
+<tr>
+<td><strong>기본</strong> (확률 50%)</td>
+<td>외교 교착 지속, 6주간 해협 5% 가동 후 점진 회복</td>
+<td>$85~110</td>
+<td>변동성 지속, 섹터 로테이션 가속, 경기침체 우려 심화</td>
+</tr>
+<tr>
+<td><strong>비관</strong> (확률 30%)</td>
+<td>협상 결렬, 60일+ 봉쇄, 중동 생산 2백만bpd 장기 감소</td>
+<td>$135~150+</td>
+<td>글로벌 경기침체 진입, 주요 지수 -15~25% 추가 하락</td>
+</tr>
+</tbody>
+</table>
+<p>골드만삭스의 다안 스트루이벤 원유 리서치 헤드는 비관 시나리오에서 브렌트유가 <strong>2008년 사상 최고치 $147.50을 돌파</strong>할 수 있다고 경고했다. JP모건과 씨티그룹은 봉쇄가 1개월 이상 지속되면 <strong>$150~200까지 가능</strong>하다고 전망했다.</p>
+<p><strong>핵심 일정</strong>: 5일 공격 중단 만료(~3월 28일), OPEC+ 회의(4월 5일)</p>
+<hr />
+<h2>2. 에너지 시장: 역사상 최대의 공급 차질</h2>
+<h3>유가 현황 (3월 23일 종가 기준)</h3>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>현재가</th>
+<th>전쟁 전</th>
+<th>변동률</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>브렌트유</strong></td>
+<td>~$99~104/배럴</td>
+<td>$65~67</td>
+<td><strong>+50~60%</strong></td>
+</tr>
+<tr>
+<td><strong>WTI</strong></td>
+<td>$88.13/배럴</td>
+<td>~$60대</td>
+<td><strong>+40~50%</strong></td>
+</tr>
+<tr>
+<td>미국 휘발유</td>
+<td>$3.96/갤런</td>
+<td>$2.94</td>
+<td><strong>+34%</strong> (23일 연속 상승)</td>
+</tr>
+</tbody>
+</table>
+<p>3월 23일은 원유 시장 역사상 가장 극적인 하루였다. 브렌트유는 주말 동안 $114까지 치솟았다가, 트럼프의 공격 중단 발표 직후 <strong>14% 이상 폭락</strong>해 $92까지 내려갔고, 이란의 대화 부인 이후 다시 반등했다. 블룸버그는 이를 <strong>"역사상 가장 큰 단일 가격 변동 중 하나"</strong>라고 보도했다.</p>
+<h3>골드만삭스 원유 전망 (3월 22일 발표)</h3>
+<ul>
+<li>2026년 브렌트유 연평균: <strong>$85/배럴</strong> (종전 $77에서 상향)</li>
+<li>3~4월 단기 전망: <strong>$110/배럴</strong></li>
+<li>Q4 2026 기본 시나리오: <strong>$71/배럴</strong> (해협 점진 회복 가정)</li>
+<li>현재 페르시아만 원유 수출 차질: <strong>일일 1,760만 배럴</strong></li>
+<li>누적 손실: <strong>8억 배럴 이상</strong> 예상</li>
+</ul>
+<h3>석유 생산자 숏 포지션의 의미</h3>
+<p>석유 생산자들이 <strong>20년 만에 최대 규모인 $1,927억 달러의 숏 포지션</strong>을 보유하고 있다는 것은, 생산자들이 유가 하락에 베팅하거나 헤지 포지션을 대규모로 구축했음을 의미한다. 이는 두 가지 해석이 가능하다. 첫째, 생산자들은 현재의 전쟁 프리미엄이 <strong>일시적</strong>이라고 판단하고 있다. 둘째, $100 이상 유가에서 <strong>미국 셰일 생산 급증</strong>이 예상돼 중기적으로 가격이 하락할 것이라는 내부 전망을 반영한다. EIA는 2026년 미국 원유 생산량을 <strong>일일 1,360만 배럴</strong>로 전망하며 이를 뒷받침한다.</p>
+<p>셰브론 CEO 마이크 워스는 3월 23일 CERAWeek에서 <strong>"이란 전쟁이 러시아-우크라이나 전쟁보다 유가에 더 큰 타격을 입혔다"</strong>며, <strong>"물리적 공급 부족이 선물 곡선에 아직 완전히 반영되지 않았다"</strong>고 경고했다. 아시아 국가들이 이미 디젤과 항공유 부족에 직면하고 있으며, 해협이 재개방되더라도 재고 재구축에 <strong>수개월이 걸릴 것</strong>이라고 밝혔다.</p>
+<h3>에너지 투자 전략</h3>
+<p>에너지는 이란 전쟁 이후 <strong>S&amp;P 500에서 유일한 플러스 섹터</strong>로, YTD <strong>+31.8%</strong> 수익률을 기록했다. 엑슨모빌(시가총액 +30% → $6,430억), 셰브론(+30% → ~$4,000억), 옥시덴탈 페트롤리엄(+43% YTD) 등이 대표적 수혜주다. 단, 현재 유가에는 전쟁 프리미엄이 과도하게 반영돼 있어, <strong>외교적 해결 시 급락 리스크</strong>가 크다. 중기적으로 IEA가 제시한 수요 측면 대응(재택근무 확대, 속도제한 등)과 미국 셰일 생산 증가가 가격 안정화 요인이 될 것이다.</p>
+<hr />
+<h2>3. 글로벌 증시: 공포 속 동시다발적 급락</h2>
+<h3>주요 지수 현황 (3월 23일)</h3>
+<table>
+<thead>
+<tr>
+<th>지수</th>
+<th>종가</th>
+<th>일간 변동</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S&amp;P 500</strong></td>
+<td>6,581</td>
+<td><strong>+1.15%</strong></td>
+<td>트럼프 발표 후 선물 +2.7% → 장중 축소. YTD 마이너스</td>
+</tr>
+<tr>
+<td><strong>나스닥</strong></td>
+<td>21,947</td>
+<td><strong>+1.38%</strong></td>
+<td>200일 이동평균선 하회 중</td>
+</tr>
+<tr>
+<td><strong>다우존스</strong></td>
+<td>46,208</td>
+<td><strong>+631pt (+1.38%)</strong></td>
+<td>4주 연속 하락 중 반등</td>
+</tr>
+<tr>
+<td><strong>코스피</strong></td>
+<td>5,406</td>
+<td><strong>-6.49% (-375pt)</strong></td>
+<td>6번째 사이드카 발동, 원/달러 17년 래 최저</td>
+</tr>
+<tr>
+<td><strong>닛케이 225</strong></td>
+<td>51,515</td>
+<td><strong>-3.36%</strong></td>
+<td>2월 27일 ATH 58,850 대비 -13%</td>
+</tr>
+<tr>
+<td><strong>인도 Nifty 50</strong></td>
+<td>22,530</td>
+<td><strong>-2.5%</strong></td>
+<td>코로나 이후 최악의 2주간 하락</td>
+</tr>
+<tr>
+<td><strong>항셍</strong></td>
+<td>24,382</td>
+<td><strong>-3.5%</strong></td>
+<td>중국 CSI 300 -3.3% 동반 하락</td>
+</tr>
+</tbody>
+</table>
+<p>미국 3대 지수는 3월 19일 <strong>동시에 200일 이동평균선을 하회</strong>하는 드문 기술적 신호를 발생시켰다. VIX는 3월 9일 이후 처음으로 <strong>30을 돌파</strong>했다.</p>
+<h3>코스피: 역사적 변동성의 한복판</h3>
+<p>코스피는 2025년 4월 ~2,400에서 2026년 2월 말 <strong>사상 최고치 6,347</strong>까지 1년도 안 되는 기간에 2.6배 폭등했다. 그러나 전쟁 발발 후 3월 4일에는 <strong>-12.06%라는 역대 최대 일간 낙폭</strong>을 기록해 9/11(-12.02%)마저 초과했고, 서킷브레이커가 발동됐다. VKOSPI(한국 VIX)는 <strong>81.99로 사상 최고</strong>를 기록했다.</p>
+<p>외국인은 3월 3~4일 이틀간 <strong>12조 원 이상을 매도</strong>했으며, 3월 23일에도 <strong>1.8조 원 순매도</strong>를 기록했다. 원/달러 환율은 <strong>1,510원을 돌파하며 17년 래 최저</strong>를 경신했다. 삼성전자와 SK하이닉스가 코스피 시가총액의 <strong>43%</strong>를 차지하는 구조적 취약성이 증폭 효과를 만들고 있다.</p>
+<p>대신증권 이경민 연구원은 <strong>"고유가·고환율·고금리의 삼중고"</strong>가 외국인·기관의 대형주 투매를 촉발했다고 분석했다. 정부는 <strong>100조 원 규모의 시장 안정화 프로그램</strong>을 가동했다. 다만 코스피는 폭락 후에도 <strong>YTD +21%, YoY +100%</strong> 수준으로, 전쟁 전 과열 밸류에이션의 정상화 과정이기도 하다.</p>
+<h3>투자자가 주목해야 할 기회와 위험</h3>
+<p><strong>기회</strong>: 에너지 섹터(YTD +31.8%), 방산주(상대적 강세), 과매도 반도체(삼성전자·SK하이닉스 애널리스트 목표가 대비 30~40% 괴리). 래리 핑크 블랙록 CEO는 <strong>"시간이 지나면, 투자를 유지한 것이 타이밍을 맞추는 것보다 훨씬 더 중요했다"</strong>고 조언했다.</p>
+<p><strong>위험</strong>: VIX 30+ 지속, 200일선 하회, 마진콜에 의한 강제 청산 연쇄, 외국인 이탈 가속. BofA의 마이클 하트넷은 <strong>"2026년 자산 가격 흐름이 2007년 중반~2008년 중반과 불안할 정도로 유사하다"</strong>고 경고했다.</p>
+<hr />
+<h2>4. 안전자산의 역설: 금 폭락이 말해주는 것</h2>
+<h3>금값 현황</h3>
+<ul>
+<li><strong>현재가</strong>: ~$4,400~4,500/온스 (3월 23일)</li>
+<li><strong>사상 최고치</strong>: $5,600/온스 (1월 29일)</li>
+<li><strong>하락폭</strong>: ATH 대비 <strong>-20% 이상</strong> → 공식 약세장(Bear Market) 진입</li>
+<li><strong>주간 낙폭</strong>: -11% → <strong>1983년 이후 최악의 주간 하락</strong></li>
+<li><strong>GLD ETF</strong>: 3월 5일 주간 <strong>$42억 유출</strong> → ETF 역사상 최대 주간 유출</li>
+</ul>
+<p>전쟁 중에 안전자산인 금이 폭락하는 것은 직관에 반한다. 그러나 이번 하락의 원인은 <strong>네 가지 요인의 동시 작용</strong>에 있다.</p>
+<p><strong>첫째, 금리 급등이 금의 매력을 압살했다.</strong> 연준은 3월 FOMC에서 금리를 3.50~3.75%에 동결하면서 2026년 인하를 <strong>1회로 축소</strong>했고, 파월 의장은 인플레이션이 "기대만큼 내려오지 않고 있다"고 밝혔다. 10년물 수익률이 <strong>4.40%</strong>까지 치솟으면서 무이자 자산인 금의 기회비용이 급증했다. CME FedWatch에서는 <strong>10월까지 금리 인상 확률이 52%</strong>에 달했다.</p>
+<p><strong>둘째, 강달러가 국제 매수세를 억압했다.</strong> DXY 지수가 ~100으로 상승해 해외 투자자의 금 매수 비용이 증가했다.</p>
+<p><strong>셋째, 강제 청산(Forced Liquidation)이 금 시장을 덮쳤다.</strong> 주식·원유 포지션에서 마진콜을 받은 헤지펀드들이 <strong>가장 유동성이 높은 자산인 금을 현금화</strong>하는 2020년 3월·2008년과 동일한 메커니즘이 작동했다. 코인뷰로의 닉 퍼크린은 "$5,500에서의 금은 안전이 아니라 트레이딩으로 가격이 형성된 것이었고, 매우 혼잡한 트레이드였다"고 분석했다.</p>
+<p><strong>넷째, '오일-인플레이션 역설'이 금을 공격했다.</strong> 이란 전쟁 → 유가 급등 → 인플레이션 재점화 → 연준 매파 전환 → 금리 상승 → 금 하락. <strong>전쟁이 오히려 금을 해치는</strong> 아이러니한 구조가 형성된 것이다.</p>
+<h3>월가의 금 전망: 장기 강세 유지</h3>
+<p>단기 폭락에도 불구하고 월가 애널리스트들은 여전히 <strong>장기 강세</strong>를 유지한다. JP모건 연말 목표가 <strong>$6,300</strong>, UBS <strong>$6,200</strong>, 도이치뱅크 <strong>$6,000</strong>, 웰스파고 <strong>$6,100~6,300</strong>. 이는 중앙은행의 금 매입 트렌드, 탈달러화, 재정 적자 확대라는 구조적 요인이 여전히 유효하기 때문이다. <strong>현재의 폭락은 유동성 이벤트이지, 금의 구조적 강세가 끝난 것이 아니다.</strong></p>
+<hr />
+<h2>5. AI·기술 섹터: 지정학적 혼란 속 혁명은 계속된다</h2>
+<h3>AI 투자의 현재 규모</h3>
+<p>NVIDIA는 3월 16~19일 GTC 2026에서 <strong>블랙웰과 베라 루빈 제품군의 누적 매출 $1조 달러</strong> 전망을 발표했다(1년 전 $5,000억에서 2배 상향). FY2026 매출 <strong>$2,159억</strong>(+65% YoY), 잉여현금흐름 <strong>$966억</strong>을 기록했다. 젠슨 황 CEO는 <strong>"에이전틱 AI의 변곡점이 도래했다"</strong>고 선언했으며, 향후 10년 내 <strong>AI 인프라에 연간 $3~4조가 투자</strong>될 것으로 전망했다. 테크 기업들의 2026년 데이터센터 투자는 <strong>$7,000억</strong>에 달한다.</p>
+<h3>주목 종목별 현황</h3>
+<p><strong>NVIDIA ($172.70, YTD -7%)</strong>: 3월 23일 AES·콘스텔레이션 에너지 등 6개 에너지 대기업과 <strong>'그리드 통합 AI 공장'</strong> 파트너십을 발표했다. 미국 전력 시스템에서 <strong>최대 100GW의 유연한 전력</strong>을 확보하는 것이 목표다. 베라 루빈 DSX 기반의 AI 공장은 전력 수급 상황에 따라 가동률을 조절해 그리드 자산으로 기능한다. 애널리스트 59명 컨센서스 <strong>매수</strong>, 중간 목표가 <strong>$269</strong>.</p>
+<p><strong>AMD (~$193~200, YTD -19.8%)</strong>: 한국 AI 기업 업스테이지와 <strong>Instinct MI355 가속기 1만 개 구매 논의</strong> 중(블룸버그, 3월 23일). 업스테이지 CEO 김성훈은 "한국에 NVIDIA 칩이 많지만, AMD 등으로 다변화하고 싶다"고 밝혔다. 메타와의 <strong>$600억 규모 5년 계약</strong>(Instinct MI450)도 확보했다. 데이터센터 매출이 FY2024 $65억에서 FY2025 <strong>$166억으로 155% 성장</strong>했다.</p>
+<p><strong>SK하이닉스 (~101만 원)</strong>: <strong>미국 ADR 상장을 추진</strong> 중이며, 신주 발행으로 <strong>10~15조 원(약 $67~100억) 조달</strong>을 계획하고 있다. 최태원 회장은 GTC 2026에서 "상장을 검토 중이며, 한국뿐 아니라 미국·글로벌 투자자에게 노출될 것"이라고 밝혔다. 현재 P/E <strong>5.7배</strong>로 마이크론(12.1배)의 절반 수준이며, ADR 상장 시 필라델피아 반도체지수(SOX) 편입으로 대규모 패시브 자금 유입이 예상된다. 세계 최초 <strong>16단 HBM4</strong>를 GTC에서 공개했다.</p>
+<h3>헬륨 위기: 반도체 공급망의 새로운 뇌관</h3>
+<p>이란의 카타르 라스 라판 공격으로 <strong>글로벌 헬륨 공급의 33%가 차단</strong>됐다. 카타르에너지는 3월 4일 불가항력(Force Majeure)을 선언했고, 헬륨 생산 능력의 <strong>14%가 영구 손상</strong>돼 재건에 최대 5년이 소요된다. 헬륨은 웨이퍼 냉각, EUV 리소그래피, 플라즈마 에칭에 <strong>대체 불가능</strong>한 소재다.</p>
+<p><strong>한국이 가장 취약하다.</strong> 2025년 한국의 헬륨 수입 중 <strong>64.7%가 카타르산</strong>이었다. 삼성전자와 SK하이닉스는 헬륨 절약 프로토콜을 가동했으며, 서울시는 <strong>14개 반도체 소재</strong>의 전쟁 취약성을 모니터링 중이다. 추가로 브롬(회로 형성용)의 <strong>90%가 이스라엘산</strong>으로 이 역시 위험에 노출돼 있다. 피치 레이팅스는 삼성·SK하이닉스가 <strong>수개월분 재고</strong>를 확보하고 있으나 다변화를 가속해야 한다고 경고했다.</p>
+<h3>대형 IPO 물결</h3>
+<p><strong>OpenAI</strong>(2026년 Q4 목표, $8,300억 밸류에이션, ARR ~$250억), <strong>SpaceX</strong>(2026년 6월 목표, ~$1.75조), <strong>Anthropic</strong>($3,500억)의 상장 준비가 진행 중이다. OpenAI는 핵융합 스타트업 <strong>Helion Energy</strong>와 2030년까지 <strong>5GW, 2035년까지 50GW</strong> 전력 구매 협상을 진행 중이다. 테슬라는 SpaceX·xAI와 합작으로 <strong>테라팹($200~250억)</strong>을 발표했으며, 2나노 공정으로 2028년 본격 양산을 목표로 한다.</p>
+<hr />
+<h2>6. 암호화폐 시장: 극도의 공포, 그러나 고래는 매집 중</h2>
+<h3>현재 가격 및 심리 지표</h3>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>현재 수준</th>
+<th>ATH 대비</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>비트코인</strong></td>
+<td>$68,625~70,900</td>
+<td><strong>-44~46%</strong> (ATH $126,296, 2025년 10월)</td>
+</tr>
+<tr>
+<td><strong>이더리움</strong></td>
+<td>$2,141</td>
+<td><strong>-56%</strong> (ATH $4,831)</td>
+</tr>
+<tr>
+<td><strong>공포-탐욕 지수</strong></td>
+<td><strong>8~10/100</strong> (극도의 공포)</td>
+<td>46일 연속 극단적 공포 영역</td>
+</tr>
+<tr>
+<td><strong>BTC 도미넌스</strong></td>
+<td>56.2%</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>IBIT ETF AUM</strong></td>
+<td>$540억+ (777K BTC 보유)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>비트코인은 2025년 10월 $126,296 ATH 이후 5개월 연속 하락하며, 이란 전쟁 이전에 이미 $60,000~75,000 레인지로 후퇴해 있었다. 전통 시장의 전쟁 충격이 이제 암호화폐로 전이되는 양상이다.</p>
+<h3>고래 행동의 이중성</h3>
+<p>3월 18일 <strong>100 BTC 이상 보유 고래가 하루 만에 44,459 BTC를 거래소로 이동</strong>시킨 대규모 매도 이벤트가 포착됐다(CryptoQuant). 그러나 동시에 <strong>1,000 BTC 이상 보유 지갑은 30일간 270,000 BTC($187~230억)를 순매집</strong>해 2013년 이후 최대 규모의 지속적 축적을 기록했다(Glassnode). 고래 주소 수는 2,041개에서 2,089개로 증가했다.</p>
+<p>이 이중성의 해석: 단기 트레이딩 고래가 포지션을 정리하는 반면, <strong>장기 보유 목적의 기관과 대형 투자자는 공포 국면에서 적극 매집</strong>하고 있다. 거래소 보유 BTC가 <strong>231만 개로 6년 래 최저</strong>인 점이 이를 뒷받침한다. 스트래티지(구 마이크로스트래티지)는 12주 연속 매입을 지속해 보유량이 <strong>761,068 BTC</strong>에 달한다.</p>
+<h3>BTC 전망</h3>
+<p>기술적으로 MACD 히스토그램이 다시 음전환해 <strong>단기 약세 신호</strong>를 보내고 있다. 옵션 시장에서도 풋 옵션 편향이 기록적 수준이다. 그러나 블랙록의 IBIT는 3월 9~17일 7거래일 연속 <strong>$11.7억 순유입</strong>을 기록한 뒤 3월 18일(FOMC 당일)에야 유출로 전환됐다. <strong>극단적 공포(8/100)는 역사적으로 중기 매수 시그널</strong>이었으며, 2022년 FTX 붕괴 당시와 동일 수준이다. 단, 거시 환경(금리 상승, 전쟁 불확실성)이 2022년과 크게 다르므로 바닥 확인에 시간이 필요하다.</p>
+<hr />
+<h2>7. 글로벌 인플레이션과 중앙은행: 모두가 매파로 돌아섰다</h2>
+<h3>중앙은행 정책 현황</h3>
+<table>
+<thead>
+<tr>
+<th>중앙은행</th>
+<th>현재 금리</th>
+<th>최신 결정</th>
+<th>향후 전망</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>미 연준(Fed)</strong></td>
+<td>3.50~3.75%</td>
+<td>동결 (3월 18일)</td>
+<td>인하 9월/12월로 지연, <strong>인상 확률 52%</strong> (10월 CME)</td>
+</tr>
+<tr>
+<td><strong>ECB</strong></td>
+<td>2.00%</td>
+<td>동결</td>
+<td>골드만삭스: <strong>4월·6월 각 25bp 인상</strong> → 2.50%</td>
+</tr>
+<tr>
+<td><strong>BOJ</strong></td>
+<td>0.75%</td>
+<td>동결 (8:1, 다카타 위원 반대)</td>
+<td>BofA: <strong>4월 1.00%로 인상</strong></td>
+</tr>
+<tr>
+<td><strong>BoE</strong></td>
+<td>3.75%</td>
+<td>동결 (9:0 만장일치)</td>
+<td><strong>2~4월 인하에서 연내 60bp+ 인상으로 전환</strong></td>
+</tr>
+</tbody>
+</table>
+<p>이것은 <strong>역사적 전환점</strong>이다. 불과 수주 전까지 시장은 ECB와 BoE의 금리 인하를 기대했고, 연준도 6월 인하를 가격에 반영하고 있었다. 그런데 이란 전쟁 → 유가 폭등 → 인플레이션 재점화라는 경로가 <strong>모든 주요 중앙은행을 동시에 매파로 전환</strong>시켰다.</p>
+<p>골드만삭스의 ECB 인상 전망은 특히 충격적이다. ECB 스태프 전망은 2026년 헤드라인 인플레이션을 기존 2.0%에서 <strong>2.6%로 상향</strong>, 성장률은 1.2%에서 <strong>0.9%로 하향</strong>했다. 유럽 천연가스 가격이 ECB 전망치의 <strong>2배</strong>에 거래되고 있어 추가 상향 리스크가 크다.</p>
+<h3>미국 10년물 국채 금리: 4.40% 시대</h3>
+<p>10년물 수익률은 3월 23일 장중 <strong>4.443%</strong>까지 상승한 뒤, 트럼프의 이란 외교 소식에 4.35%로 하락했다. 지난 한 달간 <strong>+37~45bp 급등</strong>해 2025년 7월 이후 최고치를 기록했다. 이 수준은 주식과 부동산 밸류에이션에 직접적인 하방 압력을 가하며, 특히 <strong>성장주와 부채 비율이 높은 기업에 치명적</strong>이다.</p>
+<p>JP모건의 미슬라프 마테이카는 <strong>"주식이 안정되려면 유가뿐 아니라 채권 수익률도 안정돼야 한다"</strong>고 지적했다. 금리 급등은 금 폭락, 주식 하락, 크레딧 스프레드 확대를 동시에 촉발하는 <strong>연쇄 작용의 핵심 변수</strong>다.</p>
+<hr />
+<h2>8. 식량 위기 경고와 인플레이션의 다음 파도</h2>
+<p>카네기 러시아·유라시아 센터의 알렉산드라 프로코펜코 연구원은 3월 19일 <strong>"호르무즈 해협 봉쇄의 공급 충격이 6~9개월 후 식량 가격에 나타날 것"</strong>이라고 경고했다. 이는 세 단계로 전개된다.</p>
+<p><strong>1단계 (현재)</strong>: 비료 가격 급등. 요소 가격 <strong>+25~30%</strong>, 걸프 생산자들이 남미·아시아 계약에 불가항력 선언, <strong>100만 톤의 비료가 걸프만에 좌초</strong>. 글로벌 요소 거래의 약 1/3이 호르무즈를 통과한다.</p>
+<p><strong>2단계 (Q3~Q4 2026)</strong>: 비료 부족으로 파종 면적 감소, 작물 수확량 하락. 질소·인산 투입이 10% 이상 줄면 옥수수·밀 수확량 <strong>5~8% 감소</strong> 예상.</p>
+<p><strong>3단계 (2027년)</strong>: 수입 의존 경제국에서 식품 가격 인플레이션 본격화.</p>
+<p>UN 세계식량계획(WFP) 칼 스카우 부사무총장은 <strong>"분쟁이 6월까지 지속되면 추가 4,500만 명이 급성 기아에 내몰릴 것"</strong>이라고 밝혔다. 구리도 LME 3개월물이 이달 <strong>-10~12% 하락</strong>하며 약세장에 진입했고, 중국의 가격 거부와 재고 급증(<strong>33만 톤, 2019년 이래 최대</strong>)이 겹치고 있다.</p>
+<p>블랙스톤의 $820억 규모 프라이빗 크레딧 펀드(BCRED)가 <strong>2022년 9월 이후 첫 월간 손실(-0.4%)</strong>을 기록하고, Q1 환매 요청이 <strong>$37억(펀드의 7.9%)</strong>에 달한 것은 <strong>신용 시장의 균열 초기 신호</strong>로 해석된다.</p>
+<hr />
+<h2>9. 주목 섹터 TOP 5와 피해야 할 섹터</h2>
+<h3>지금 주목해야 할 섹터 5선</h3>
+<table>
+<thead>
+<tr>
+<th>순위</th>
+<th>섹터</th>
+<th>근거</th>
+<th>대표 종목/ETF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>에너지 (상류)</strong></td>
+<td>유일한 S&amp;P 500 플러스 섹터, YTD +31.8%, 물리적 공급 부족 지속</td>
+<td>엑슨모빌, 셰브론, 옥시덴탈, XLE</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>AI 반도체</strong></td>
+<td>구조적 수요 불변, 과매도 구간 진입, SK하이닉스 ADR 모멘텀</td>
+<td>NVIDIA, AMD, SK하이닉스, SOXX</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>방산</strong></td>
+<td>글로벌 군비 증강 불가피, 한국·유럽·미국 방산 예산 확대</td>
+<td>한화에어로스페이스, LIG넥스원, LMT, RTX</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>미국 단기 국채/머니마켓</strong></td>
+<td>4.40% 금리에서 무위험 수익, 변동성 헤지</td>
+<td>SHV, BIL, SGOV</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>식량·비료</strong></td>
+<td>6~9개월 후 가격 충격 선반영 기회</td>
+<td>CF Industries, Nutrien, Mosaic</td>
+</tr>
+</tbody>
+</table>
+<h3>피해야 할 섹터</h3>
+<ul>
+<li><strong>항공·여행</strong>: 항공유 가격 175% YTD 급등, 수요 감소 불가피</li>
+<li><strong>신흥국 소비재</strong>: 원자재·환율·금리 삼중고 직격</li>
+<li><strong>고레버리지 성장주</strong>: 금리 4.40%+ 환경에서 DCF 밸류에이션 급락</li>
+<li><strong>프라이빗 크레딧/BDC</strong>: BCRED 손실이 시사하는 신용 리스크 확대</li>
+<li><strong>중국 수출주</strong>: 구리 -12%, 수요 거부 신호, 경기 둔화</li>
+</ul>
+<hr />
+<h2>10. 극도의 공포 국면에서 투자자 행동 지침</h2>
+<h3>현재 공포 수준의 역사적 의미</h3>
+<p>암호화폐 공포-탐욕 지수 <strong>8/100</strong>, 인플레이션 공포-탐욕 지수 <strong>19/100</strong>, VIX <strong>30+</strong>, VKOSPI <strong>사상 최고 81.99</strong> 기록. 이 수준은 2022년 FTX 붕괴, 2020년 3월 코로나 충격, 2008년 금융위기 초기와 비교되는 <strong>극단적 공포</strong>다. 골드만삭스는 경기침체 확률을 <strong>30%</strong>, JP모건은 <strong>35%</strong>로 상향했다. 무디스의 마크 잔디는 <strong>49%</strong>를 제시한다.</p>
+<h3>투자자 행동 원칙</h3>
+<p><strong>원칙 1: 현금 비중을 높이되, 완전 탈출은 하지 마라.</strong> 래리 핑크가 말했듯 "시간이 지나면 투자를 유지한 것이 타이밍보다 중요했다." 단, 현재는 불확실성이 극도로 높으므로 포트폴리오의 <strong>20~30%를 현금·단기 국채</strong>로 보유하는 것이 합리적이다. 미국 단기 국채는 연 <strong>4%+ 무위험 수익</strong>을 제공한다.</p>
+<p><strong>원칙 2: 분할 매수(DCA)로 접근하라.</strong> 3월 28일(5일 공격 중단 만료), 4월 5일(OPEC+ 회의)이 핵심 일정이다. 한 번에 올인하지 말고, 주요 이벤트 전후로 나눠 진입해 평균 매입 단가를 분산하라.</p>
+<p><strong>원칙 3: 상관관계가 붕괴된 시장에서는 자산 간 분산이 아닌 '전략 분산'이 필요하다.</strong> 금·채권·주식이 동시에 하락하는 환경에서 전통적 60/40 포트폴리오는 작동하지 않는다. 에너지 롱 + 성장주 언더웨이트 + 단기 국채 + 현금의 <strong>바벨 전략</strong>이 현 국면에 적합하다.</p>
+<p><strong>원칙 4: 외교적 해결의 '꼬리 위험(Tail Risk)'에 대비하라.</strong> 트럼프의 5일 중단 발표만으로 유가가 14%, 다우 선물이 +1,000포인트 움직였다. 실질적 평화 합의 시 에너지 섹터는 <strong>하루 만에 20%+ 폭락</strong>할 수 있고, 반대로 기술·소비재는 급반등할 수 있다. 한쪽에만 올인한 포지션은 치명적이다.</p>
+<p><strong>원칙 5: 한국 투자자는 환율 헤지를 반드시 고려하라.</strong> 원/달러가 1,510원으로 17년 래 최저인 상황에서 미국 자산 투자 시 환차손 리스크가 크지만, 동시에 <strong>외교적 해결 시 원화 급반등</strong>으로 환차익이 날 수도 있다. 환 노출을 의도적으로 관리하라.</p>
+<hr />
+<h2>핵심 요약 카드</h2>
+<table>
+<thead>
+<tr>
+<th>섹션</th>
+<th>한줄 요약</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>지정학</strong></td>
+<td>미-이란 전쟁 24일차, 트럼프 5일 공격 중단 vs 이란 대화 부인 — 3월 28일이 분수령</td>
+</tr>
+<tr>
+<td><strong>에너지</strong></td>
+<td>역사상 최대 원유 공급 차질(일일 1,100만 배럴), 브렌트유 $99~114 극심한 변동성</td>
+</tr>
+<tr>
+<td><strong>글로벌 증시</strong></td>
+<td>코스피 -6.49%, 닛케이 -3.36%, S&amp;P 500 200일선 하회 — VIX 30+ 공포 국면</td>
+</tr>
+<tr>
+<td><strong>안전자산</strong></td>
+<td>금 ATH 대비 -20% 약세장 진입, 원인은 전쟁이 아닌 금리 상승과 강제 청산</td>
+</tr>
+<tr>
+<td><strong>AI/기술</strong></td>
+<td>NVIDIA $1조 매출 전망, SK하이닉스 ADR, 헬륨 위기가 유일한 리스크 — AI 혁명은 지속</td>
+</tr>
+<tr>
+<td><strong>암호화폐</strong></td>
+<td>BTC $69K, 공포지수 8/100이지만 고래는 30일간 $230억 순매집 — 역사적 매수 시그널 가능성</td>
+</tr>
+<tr>
+<td><strong>중앙은행</strong></td>
+<td>ECB·BoE·BOJ 모두 인상 전환, 연준 인하 지연 — '모든 곳에서 긴축'의 시대</td>
+</tr>
+<tr>
+<td><strong>식량/원자재</strong></td>
+<td>비료 +25~30%, 6~9개월 후 식량 가격 충격 경고, 구리 약세장 진입</td>
+</tr>
+<tr>
+<td><strong>주목 섹터</strong></td>
+<td>에너지 &gt; AI 반도체 &gt; 방산 &gt; 단기 국채 &gt; 비료·식량</td>
+</tr>
+<tr>
+<td><strong>투자 전략</strong></td>
+<td>현금 20~30% 확보, 분할 매수, 바벨 전략, 환헤지 — "농부의 인내심"이 답이다</td>
+</tr>
+</tbody>
+</table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TAB: FULL ANALYSIS
+       ══════════════════════════════════ -->
+  <div id="tab-fullanalysis" class="tab-content hidden" style="padding-top:26px;">
+    <div class="sh">
+      <span class="sh-dot"></span>
+      <span class="sh-title">전체분석</span>
+      <span class="sh-rule"></span>
+    </div>
+    <details class="accordion-section" open><summary class="accordion-title"><span class="accordion-title-text">📋 요약</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><h3>거시경제</h3>
+<p>✨ <strong>시장 분위기 및 변동성 심화</strong></p>
+<ul>
+<li>글로벌 금융 시장은 중동 지정학적 리스크 고조로 <strong>극심한 변동성</strong>과 <code>극도의 공포</code> 심리에 휩싸임 (암호화폐 공포-탐욕 지수 <strong>8/100</strong>, 일반 시장 <strong>19/100</strong>).</li>
+<li><code>SPX</code>가 <strong>6월</strong> 만기까지 매 세션 <strong>175bp</strong>씩 움직일 것으로 예상되는 등 높은 시장 변동성이 전망됨.</li>
+<li>선물 시장은 야간 폭락 후 낮에 뉴스/소문으로 급등하는 패턴이 <strong>3주</strong> 연속 관찰됨.</li>
+</ul>
+<p>✨ <strong>글로벌 증시 대폭 하락 및 반등 혼조</strong></p>
+<ul>
+<li>아시아 증시는 매도세 심화, 한국 <code>코스피</code> 지수 <strong>5% 이상</strong> (<strong>-6.49%</strong>) 폭락, 일본 <code>닛케이 225</code>도 <strong>5% 이상</strong> 급락.</li>
+<li>인도 <code>Nifty 50</code> 및 <code>Sensex</code> 지수 <strong>2~2.5%</strong> 급락, 최고점 대비 <strong>15%</strong> 조정.</li>
+<li><code>S&amp;P 500</code> 선물은 초기 <strong>-0.6%</strong> 하락 후, 트럼프 발언 직후 <strong>2.5% 이상</strong> 급등했으나, 이란 부인 후 <strong>1.3%</strong>로 상승폭 축소.</li>
+<li>미국 주요 지수(<code>S&amp;P 500</code>, <code>NASDAQ</code>, <code>Dow Jones</code>, <code>IWM</code>) 모두 <strong>1% 이상</strong> 상승 개장.</li>
+<li><code>SPX</code> 주식 중 <strong>14%</strong>만이 과매도 수준으로, 과거 하락장 대비 광범위한 <code>항복</code> 단계는 아님.</li>
+</ul>
+<p>✨ <strong>채권 시장 압력 및 금리 인상 전망</strong></p>
+<ul>
+<li>미국 <strong>10년</strong> 만기 국채 금리가 <strong>3주</strong> 만에 약 <strong>45bp</strong> 상승하여 <strong>4.40%</strong>에 육박, <strong>4.50%~4.60%</strong>를 <code>마지노선</code>으로 주시.</li>
+<li><code>골드만삭스</code>는 <code>ECB</code>가 <strong>2026년 4월과 6월</strong>에 각각 <strong>25bp</strong>씩 두 차례 금리 인상을 단행할 것으로 예상.</li>
+<li>영국 중앙은행(<code>BoE</code>) 금리 인상 전망은 초기 <strong>4회</strong>에서 <strong>2회</strong>로 하향 조정.</li>
+<li><code>Fed</code> <code>굴스비</code> 총재는 고유가가 인플레이션 <strong>2차 효과</strong> 발생 시 금리 인상이 필요할 수 있다고 언급.</li>
+<li><code>Fed</code> <code>미란</code> 이사는 현재 상황 판단은 시기상조이나, <strong>2차 효과</strong> 및 임금 상승이 금리 인상을 필요로 할 수 있다고 밝히며 금리 인하 전망 유지.</li>
+<li>일본 <code>BOJ</code>는 약세 엔화와 중동 분쟁으로 인한 인플레이션 압력 가중에 대응하여 <strong>4월</strong> 정책 문구 수정 기반 마련, 단기 금리 인상 가능성 시사.</li>
+</ul>
+<p>✨ <strong>원자재 시장의 극심한 변동성 및 역설</strong></p>
+<ul>
+<li><code>브렌트유</code>는 트럼프 및 이란 전쟁 위협에 배럴당 <strong>114달러</strong>까지 상승했으나, <strong>30분</strong> 만에 <strong>4% 이상</strong> 급락 후 트럼프 발언에 <strong>8~10% 이상</strong> 폭락, <strong>100달러</strong> 선 붕괴.</li>
+<li><code>NYMEX WTI</code> <strong>5월물</strong>은 배럴당 <strong>88.13달러</strong>로 <strong>10.28%</strong> 하락, <code>브렌트유</code> <strong>10.92%</strong> 급락.</li>
+<li><code>골드만삭스</code>는 지정학적 리스크 증가로 <strong>2026년</strong> 원유 가격 전망치를 <code>브렌트유</code> 평균 <strong>85달러</strong>, 단기 <strong>110달러</strong>로 대폭 상향.</li>
+<li>석유 생산업체들이 미국-이란 회담 발표 직전 <strong>20년</strong> 만에 최대 규모인 <strong>1,926억 4,700만 달러</strong> 규모의 오일 <code>숏 포지션</code>을 취해, 유가 하방 리스크를 경고.</li>
+<li>금과 은은 <strong>72시간</strong> 동안 금 가격 <strong>$4,520</strong>에서 <strong>$4,100</strong>로 폭락, 지난주 <strong>11% 이상</strong> 급락하여 <strong>1983년</strong> 이후 최악의 주간 하락폭 기록. 안전자산으로서의 역할 약화.</li>
+<li><code>LME</code> <strong>3개월물</strong> 구리는 이번 달 약 <strong>11%</strong> 하락, 중동 에너지 충격으로 인한 경기 침체 가능성 경고.</li>
+</ul>
+<p>✨ <strong>경제 성장 둔화 우려</strong></p>
+<ul>
+<li><code>골드만삭스</code>는 미국 경기 침체 확률을 <strong>30%</strong>로 상향 조정.</li>
+<li>애틀랜타 <code>Fed</code> <code>GDPNow</code> 모델은 <strong>1분기</strong> <code>GDP</code> 성장률 전망치를 <strong>2.3%</strong>에서 <strong>2.0%</strong>로 하향 조정.</li>
+<li>시카고 연방 준비 은행 국가 활동 지수 <code>**-0.11**</code>로 예상치(<code>0.04</code>)와 이전치(<code>0.18</code>)를 하회, 경제 활동 둔화 시사.</li>
+<li>미국 건설 지출 월간 <strong>0.3%</strong> 감소하여 예상치(<strong>0.1%</strong> 증가) 하회.</li>
+<li>유로존 소비자 신뢰지수 예상보다 크게 하락(<code>**-16.3**</code>)하며 경제 비관적 시각 반영.</li>
+</ul>
+<h3>기업/종목</h3>
+<p>✨ <strong>AI 칩 및 인프라 경쟁</strong></p>
+<ul>
+<li><code>AMD</code> (<code>$AMD</code>)는 한국 스타트업 <code>업스테이지 AI</code>와 <strong>1만 개 이상</strong>의 <code>Instinct MI355</code> AI 가속기 구매를 적극 논의하며 AI 인프라 경쟁에서 돌파구 마련.</li>
+<li><code>NVIDIA</code> (<code>$NVDA</code>)는 <code>AES</code>, <code>Constellation Energy</code> 등 전력 회사와 협력하여 <code>그리드 통합 AI 공장</code> 구축, AI 에너지 병목 현상 해결.</li>
+<li><code>Tesla</code> (<code>$TSLA</code>), <code>SpaceX</code>, <code>xAI</code>는 오스틴에 로봇, 자율 주행, 우주 컴퓨팅 위한 첨단 AI 칩 생산 <code>테라팹</code> 건설 계획 공개.</li>
+<li><code>OpenAI</code>는 기업 AI 합작 투자를 위해 사모펀드에 최소 <strong>17.5%</strong> 수익률 보장 및 최신 AI 모델 조기 접근 권한 제공.</li>
+<li><code>SK하이닉스</code>는 자사주 소각 물량만큼 신주 발행, <strong>10조~15조원</strong> 규모 자금 확보 및 미국 증시 <code>ADR</code> 상장 추진.</li>
+<li><code>FuelCell Energy</code> (<code>$FCEL</code>)는 데이터센터 맞춤형 <strong>12.5MW</strong> 파워 블록 출시, 생산 능력을 <strong>100MW</strong>에서 <strong>350MW</strong>로 확장.</li>
+<li><code>Applied Optoelectronics</code> (<code>$AAOI</code>)는 주요 하이퍼스케일 고객으로부터 <strong>5,300만 달러 이상</strong>의 <code>800G 싱글 모드 데이터 센터 트랜시버</code> 신규 주문 확보.</li>
+</ul>
+<p>✨ <strong>주요 기술 기업 동향</strong></p>
+<ul>
+<li><code>Meta</code> (<code>$META</code>) <code>마크 저커버그</code> CEO는 개인 AI 에이전트 개발 중, AI 스타트업 <code>드리머</code> 팀 영입.</li>
+<li><code>Apple</code> (<code>$AAPL</code>)은 <strong>2026년</strong> 첫 폴더블 <code>아이폰</code> 출시 예상 (<strong>1천만~2천만 대</strong> 생산량).</li>
+<li><code>Apple</code>은 올여름부터 <code>Apple 지도</code>에 검색 광고 판매 시작 예정, 서비스 매출 강화.</li>
+<li><code>Apple</code> <code>WWDC26</code>을 <strong>6월 8일~12일</strong> 개최, AI 기술 발전 및 개발자 도구에 초점.</li>
+<li><code>아이폰 에어</code>가 <code>아이폰 16 플러스</code>보다 약 <strong>2배</strong> 더 인기 있을 것으로 예상.</li>
+<li><code>Microsoft Azure</code> (<code>$MSFT</code>)는 단기 용량 문제 직면하나, <strong>2026년 하반기</strong> 성장세 가속화 예상.</li>
+<li><code>Alphabet</code> (<code>$GOOGL</code>) 목표 주가 <strong>$190</strong>에서 <strong>$215</strong>로 상향. <code>Amazon</code> (<code>$AMZN</code>) 목표 주가 <strong>$220</strong>에서 <strong>$240</strong>로 상향. <code>Apple</code> 목표 주가 <strong>$230</strong>에서 <strong>$245</strong>로 상향.</li>
+</ul>
+<p>✨ <strong>자율주행 및 모빌리티</strong></p>
+<ul>
+<li><code>Mobileye</code> (<code>$MBLY</code>)는 미국의 주요 자동차 제조업체와 <code>DMS</code> (운전자 모니터링 시스템) 공급 계약 체결, <strong>2027년</strong>부터 수백만 대 차량에 <code>EyeQ6L</code> 칩 공급.</li>
+<li><code>WeRide</code> (<code>$WRD</code>)는 <strong>1억 달러</strong> 규모 자사주 매입 승인 및 글로벌 로보택시 확장, <strong>1,125대</strong> 차량 운영, <strong>2026년 말</strong>까지 <strong>2,600대</strong> 목표.</li>
+<li><code>Google Wing</code> (<code>$GOOGL</code>)은 올해 샌프란시스코 베이 지역 가정에 드론 택배 배송 시작 예정.</li>
+<li><code>Bosch</code>와 <code>Tata AutoComp Systems</code>는 인도 <code>EV</code> 생태계 가속화를 위한 <strong>50:50</strong> 합작 법인 설립.</li>
+</ul>
+<p>✨ <strong>산업별 동향</strong></p>
+<ul>
+<li><strong>인도 제약:</strong> <code>노보 노디스크</code> 특허 만료 후 <code>선파마</code>, <code>자이더스 라이프사이언스</code> 등 여러 인도 제약사들이 <code>세마글루타이드</code> 주사제 경쟁력 있는 가격으로 대거 출시.</li>
+<li><strong>에너지/친환경:</strong> <code>Adani Green Energy</code>는 <strong>510메가와트</strong> 규모 발전 프로젝트 가동. <code>힌두스탄 아연</code>과 <code>타타 스틸</code>은 저탄소 아연 <code>EcoZen</code> 사용 확대를 위한 파트너십 강화. <code>X-energy</code> <code>IPO</code> 추진, <code>OpenAI</code>가 <code>Helion Energy</code>로부터 핵융합 에너지 구매 협상 중.</li>
+<li><strong>국방/안보:</strong> <code>Draganfly</code>와 <code>Palladyne AI</code>는 분산형 드론 군집 기술 <code>SwarmOS</code> 발전. <code>Ondas Holdings</code>는 <code>World View</code> 인수를 통해 성층권 <code>ISR</code> 분야 확장. <code>Palantir</code> (<code>$PLTR</code>)는 미 국방부의 <code>메이븐</code> 전장 시스템 사업화 추진으로 <code>황금 경로</code> 진입. <code>Fujitsu</code>는 유럽 방위 사업 부문 직원을 <strong>2030년대</strong>까지 <strong>2배</strong> 증원 계획.</li>
+<li><strong>인도 인프라:</strong> <code>G R Infraprojects</code>는 인도 국립 고속도로 공단(<code>NHAI</code>)으로부터 <strong>2,440억 루피</strong> 규모 고속도로 프로젝트 수주. <code>RITES Ltd</code>는 <code>RDSO</code>로부터 시험 선로 유지 보수 계약 수주.</li>
+<li><strong>기타 기업:</strong> <code>Vedanta</code>는 주당 <strong>11루피</strong>의 <strong>3차</strong> 중간 배당 발표. <code>Grab</code>은 <code>Delivery Hero</code>의 대만 <code>푸드판다</code> 배달 사업을 현금 <strong>6억 달러</strong>에 인수. <code>Marine Electricals (India) Limited</code>는 <strong>9천만 루피</strong> 규모 전력 분배 시스템 공급 주문 수주. <code>Wipro Ltd</code>는 한국을 전략적 성장 시장으로 보고 서울 사무실 확장 및 이노베이션 랩 개설. <code>버크셔 해서웨이</code>는 일본 보험사 <code>도쿄해상홀딩스</code>에 약 <strong>18억 달러</strong> 투자 계획. <code>Toyota</code>는 켄터키와 인디애나 공장에 <strong>10억 달러</strong> 추가 투자 계획. <code>에스티 로더</code>와 <code>푸이그</code>의 <strong>400억 달러</strong> 규모 합병 논의. <code>Spotify</code>는 팟캐스트 부서 <strong>15명</strong> 감원. <code>Lululemon</code> (<code>$LULU</code>) 내부자 매수(<strong>100만 달러</strong> 상당). <code>Apollo</code> 사모 신용 펀드의 인출 제한.</li>
+<li><strong>주요 종목 등락:</strong><ul>
+<li>상승: <code>APGE</code> (<strong>+13%</strong>), <code>INSM</code> (<strong>+10%</strong>), <code>AAL</code> (<strong>+5.8%</strong>), <code>CCL</code> (<strong>+4.9%</strong>), <code>UAL</code> (<strong>+4.7%</strong>), <code>NCLH</code> (<strong>+3.7%</strong>), <code>JBLU</code> (<strong>+3.0%</strong>), <code>WRD</code> (<strong>+8.7%</strong>), <code>SNPS</code> (<strong>+2.5%</strong>), <code>TRIP</code> (<strong>+2.5%</strong>), <code>VG</code> (<strong>+10.64%</strong>), <code>MDB</code> (<strong>+3.5%</strong>), <code>ADI</code> (<strong>+4.1%</strong>). <code>NVIDIA</code> (<code>Zacks Strong Buy</code> 유지), <code>MSFT</code>, <code>MRVL</code> (<code>JPMorgan</code>, <code>Wells Fargo</code> 상향). <code>Clear Secure</code>, <code>Akamai</code>, <code>ConocoPhillips</code> 등 일부 기술 및 에너지 관련 기업 <strong>52주 신고가</strong> 경신.</li>
+<li>하락: <code>VALN</code> (<strong>-34%</strong>), <code>PRZO</code> (<strong>-14%</strong>), <code>VST</code> (<strong>-12.76%</strong>), <code>CEG</code> (<strong>-10.90%</strong>), <code>BE</code> (<strong>-9.94%</strong>), <code>ALB</code> (<strong>-4.59%</strong>), <code>MU</code> (<strong>-4.34%</strong>), <code>SMCI</code> (<strong>-4.29%</strong>), <code>TSLA</code> (<strong>-2.76%</strong>), <code>NEM</code> (<strong>-6.77%</strong>). <code>CCL</code>, <code>BABA</code>, <code>XOM</code> (애널리스트 하향). <code>Abbott</code>, <code>Domino's Pizza</code>, <code>Super Micro</code> 등 소비재, 헬스케어, 산업재 기업들 <strong>52주 신저가</strong> 기록.</li>
+</ul>
+</li>
+</ul>
+<h3>크립토</h3>
+<p>✨ <strong>비트코인 고래들의 대규모 매도</strong></p>
+<ul>
+<li><code>비트코인</code> 고래(<strong>5,000 BTC</strong> 초과 보유)들이 지난 <strong>4시간</strong> 동안 <strong>24,453 BTC</strong> (<strong>17억 달러</strong> 이상)를 거래소에 대량 매도하며 역사적으로 강력한 약세 신호로 해석됨.</li>
+</ul>
+<p>✨ <strong>기관 투자자 유입 및 이더리움 국고 확장</strong></p>
+<ul>
+<li><code>Bitmine Holdings</code> (<code>$BMNR</code>)는 약 <strong>110억 달러</strong> 상당의 암호화폐 자산을 보유, 특히 <code>이더리움</code> 공급량의 약 <strong>3.86%</strong>에 해당하는 <strong>466만 ETH</strong>를 보유.</li>
+<li>이 중 <strong>314만 ETH</strong>를 <code>스테이킹</code>하여 연간 약 <strong>1억 8,400만 달러</strong>의 수익 창출, 대규모 기관 투자자들의 암호화폐 시장 참여 지속 시사.</li>
+</ul>
+<p>✨ <strong>지정학적 리스크의 영향</strong></p>
+<ul>
+<li>주말 동안 지정학적 리스크가 터지고 <code>CME</code>가 휴장하자, 트레이더들이 온체인에서 오일을 거래하는 현상이 포착되며 암호화폐가 전통 금융 시장의 대안 또는 보완재로 활용될 가능성을 보여줌.</li>
+</ul>
+<h3>지정학</h3>
+<p>✨ <strong>미국-이란-이스라엘 긴장 최고조</strong></p>
+<ul>
+<li>미국과 이란 간 군사적 긴장이 최고조에 달했으며, 이란은 미국의 전력 기반 시설 공격 시 걸프 지역 전체로 보복을 확대하겠다고 경고.</li>
+<li>이란은 <code>호르무즈 해협</code> 및 <code>페르시아만</code> 봉쇄 위협, <code>기뢰</code> 매설 위협 경고 (<code>CBS</code> 보도).</li>
+<li>이스라엘군은 테헤란 기반 시설에 대규모 공습 개시 보도, <code>벤구리온 공항</code> 사이렌 울리고 승객 대피.</li>
+<li>이란 혁명수비대는 이스라엘 및 역내 미군 기지에 대한 새로운 공격 감행 주장.</li>
+<li>이라크 <code>모술</code>에서 발사된 로켓이 시리아 북동부 미군 기지 향하고, 이라크 <code>에르빌</code> 주미 영사관 상공에서 드론 격추.</li>
+<li>미국 국방부가 이란에 공수부대 파병 검토 중이라는 <code>뉴욕타임스</code> 보도, 미 해병대 중동 추가 파병 예정.</li>
+<li><code>네타냐후</code> 이스라엘 총리가 <code>트럼프</code> 대통령과의 통화에서 이란 최고 지도자 암살을 공동 작전으로 추진하자고 제안했다는 루머.</li>
+</ul>
+<p>✨ <strong>트럼프 대통령의 엇갈린 발표와 이란의 부인</strong></p>
+<ul>
+<li><code>도널드 트럼프</code> 전 대통령은 미국과 이란이 "매우 긍정적이고 생산적인 대화를 나눴다"고 밝히며, 이란 발전소 및 에너지 기반 시설에 대한 모든 군사 공격을 <strong>5일</strong>간 연기하도록 국방부에 지시했다고 발표.</li>
+<li>그러나 이란 언론은 <code>트럼프</code>의 발언을 즉각 부인하며 "직간접적인 접촉이 없었다", "심리전이다", "에너지 가격 인하와 군사 계획 시간 벌기 위한 것"이라고 강력히 반박.</li>
+<li>이란 외무 차관은 역내 안정 논의를 했음에도 불구하고 "모든 제재가 해제될 때까지 전쟁을 지속할 것"이라는 강경한 입장 표명.</li>
+<li><code>튀르키예</code>, <code>이집트</code>, <code>파키스탄</code>이 미국과 이란 사이에서 긴장 완화를 위한 메시지를 전달하고 있다는 보도도 나옴.</li>
+<li>이스라엘 채널 <code>12</code>는 이란이 핵 프로그램과 관련하여 "매우 중요하고 진지한 양보를 할 준비가 되어 있다"고 보도했으나, "합의 도달 여부 판단은 시기상조"라고 덧붙임.</li>
+<li>이스라엘 관리는 워싱턴이 이란과의 전쟁 종료 시점을 <strong>4월 9일</strong>로 설정했다고 보도됨.</li>
+</ul>
+<p>✨ <strong>에너지 안보 및 공급망 위협</strong></p>
+<ul>
+<li><code>카타르</code>의 헬륨 수출 급감 경고는 글로벌 헬륨 생산량의 <strong>3분의 1</strong>을 차지하는 상황으로 반도체 생산에 심각한 차질을 초래할 수 있음.</li>
+<li>호주 최대 비료 원료 제조업체의 생산 중단 위기와 전 중앙은행 자문위원의 "<strong>6~9개월 내 식량 가격 충격</strong>" 경고는 유가뿐 아니라 비료 공급 차질이 글로벌 식량 위기로 이어질 수 있음을 경고.</li>
+<li><code>IEA</code>는 이란 분쟁이 <strong>1970년대 오일 쇼크</strong>에 비견될 만한 심각한 에너지 위기를 초래할 수 있다고 경고.</li>
+<li><code>셰브론</code> CEO는 "미국-이란 전쟁이 러시아-우크라이나 전쟁보다 국제 유가 시장에 더 큰 타격을 줬다"고 언급.</li>
+<li><code>푸틴</code> 러시아 대통령은 에너지 대기업들에게 이란 전쟁 특수로 인한 이익을 은행 대출 상환에 활용하도록 지시.</li>
+<li><code>미국</code>은 알래스카 <code>LNG</code> 프로젝트를 최우선 순위로 강조하며 에너지 안보 강화에 나서고 있음.</li>
+</ul>
+<h3>기술/AI</h3>
+<p>✨ <strong>AI 기술의 급속한 발전 및 산업 전반 변화 예고</strong></p>
+<ul>
+<li><code>마크 저커버그</code> <code>Meta</code> CEO가 자신의 업무 보조할 개인 AI 에이전트 개발 중, AI 스타트업 <code>드리머</code> 창업자 및 팀 영입.</li>
+<li><code>젠슨 황</code> <code>NVIDIA</code> CEO는 AI가 코딩 가능한 사람의 수를 "<strong>3천만 명</strong>에서 아마 <strong>10억 명</strong>으로 늘렸다"고 강조하며, 미래의 모든 목수는 <code>코더</code>가 될 것이고, AI를 가진 목수는 <code>건축가</code>가 될 것이라고 예측.</li>
+<li><code>젠슨 황</code>은 또한 "<strong>생물학적 기계 이해가 5년 내에 다가올 것</strong>"이라고 전망.</li>
+<li><code>OpenAI</code>는 <code>ChatGPT</code>에 파일 저장 기능 도입 예정, 사용자 편의성 및 활용 범위 확대.</li>
+<li><code>Mobileye</code> (<code>$MBLY</code>)는 <code>EyeQ6L</code> 칩 기반 <code>AI</code> 기술로 운전자 주의력 및 도로 위험 평가, <code>Euro NCAP 2026</code> 안전 표준 충족.</li>
+<li><code>Rubrik</code> (<code>$RBRK</code>)은 업계 최초 <code>시맨틱 AI 거버넌스 엔진 (SAGE)</code> 출시하며 <code>AI</code> 기반 보안 및 거버넌스 시장 선도.</li>
+</ul>
+<p>✨ <strong>AI 칩 및 인프라 경쟁 가속화</strong></p>
+<ul>
+<li><code>AMD</code> (<code>$AMD</code>)는 한국 <code>업스테이지 AI</code>와 <code>Instinct MI355</code> AI 가속기 <strong>1만 개 이상</strong> 구매 논의 중, <code>엔비디아</code> 의존도 줄이려는 한국 전략과 맞물려 <code>AMD</code>의 <code>ROCm</code> 스택 부각.</li>
+<li><code>Tesla</code>, <code>SpaceX</code>, <code>xAI</code>는 오스틴에 로봇, 자율 주행, 우주 컴퓨팅 위한 첨단 <code>AI 칩</code> 생산 <code>테라팹</code> 건설 계획, <strong>2027년 말</strong> 초기 생산, <strong>2028년</strong> 본격 양산 목표.</li>
+<li><code>바클레이즈</code>는 <code>Amazon</code> (<code>AWS</code>)의 <code>OpenAI</code> 및 <code>Anthropic</code> 계약 기반 <code>AI</code> 시장 점유율 확보에 긍정적 전망, 목표가 <strong>$300</strong>로 상향.</li>
+<li><code>Microsoft Azure</code> (<code>$MSFT</code>)는 단기 용량 문제 직면하나, <strong>2026년 하반기</strong> 성장세 가속화 예상.</li>
+<li><code>NVIDIA</code>는 <code>Asylon</code>과의 협력을 통해 로봇 보안 분야에서 물리적 <code>AI</code> 기술 발전시키고 <code>DroneIQ Overwatch</code> 출시.</li>
+<li><code>SK하이닉스</code>는 미국 증시 <code>ADR</code> 상장 추진, 글로벌 자금 확보 및 <code>AI</code> 시대 핵심 메모리 시장 입지 강화 전략.</li>
+</ul>
+<p>✨ <strong>AI의 막대한 에너지 수요 및 솔루션 모색</strong></p>
+<ul>
+<li><code>OpenAI</code>는 핵융합 스타트업 <code>Helion Energy</code>로부터 핵융합 에너지 구매를 위한 막바지 협상 중, <code>AI</code> 산업의 막대한 에너지 수요에 대한 선제적 대응.</li>
+<li><code>FuelCell Energy</code> (<code>$FCEL</code>)는 데이터센터 맞춤형 <strong>12.5MW</strong> 파워 블록 출시, 생산 능력 <strong>350MW</strong>로 확장, <code>AI</code> 인프라 확장에 기여 기대.</li>
+<li><code>NVIDIA</code>는 <code>AES</code>, <code>Constellation Energy</code> 등 주요 전력 회사들과 협력하여 <code>그리드 통합 AI 공장</code> 구축, <code>AI</code> 에너지 병목 현상 해결 및 전력망 안정성 높이는 이중 이점 제공.</li>
+</ul>
+<p>✨ <strong>자율주행 기술의 상업화 및 확장</strong></p>
+<ul>
+<li><code>Mobileye</code> (<code>$MBLY</code>)는 미국의 주요 자동차 제조업체와 <code>DMS</code> 공급 계약 체결, <strong>2027년</strong>부터 수백만 대 차량에 <code>EyeQ6L</code> 칩 공급 예정.</li>
+<li><code>WeRide</code> (<code>$WRD</code>)는 <strong>1억 달러</strong> 규모 자사주 매입 프로그램 승인하고 글로벌 로보택시 확장에 박차, 유럽 및 중동 시장에서 무인 운전 허가 확보.</li>
+<li><code>Google Wing</code> (<code>$GOOGL</code>)은 올해 샌프란시스코 베이 지역 가정에 드론 택배 배송 시작 예정.</li>
+</ul>
+<p>✨ <strong>기타 기술 혁신 및 산업 동향</strong></p>
+<ul>
+<li><code>Apple</code> (<code>$AAPL</code>)은 <strong>2026년</strong> 첫 폴더블 <code>아이폰</code> 출시 예상, <strong>1천만~2천만 대</strong> 생산량 전망.</li>
+<li><code>CrowdStrike</code> (<code>$CRWD</code>)와 <code>Rubrik</code> (<code>$RBRK</code>)은 <code>Microsoft Defender</code>와의 통합을 통해 엔터프라이즈 사이버 보안 솔루션 강화.</li>
+<li><code>Draganfly</code>와 <code>Palladyne AI</code>는 분산형 드론 군집 기술인 <code>SwarmOS</code>를 발전시켜 차세대 전장 역량 강화.</li>
+<li><code>Ondas Holdings</code>는 <code>World View</code> 인수를 통해 성층권 <code>ISR</code> 분야 확장, 다영역 <code>ISR</code> 플랫폼 구축 및 <code>AI</code> 기반 방어 생태계에서 입지 강화.</li>
+<li><code>USA Rare Earth</code> (<code>$USAR</code>)는 <code>Arnold Magnetic Technologies</code>와 판매 및 유통 계약 체결, 미국 내 희토류 자석 공급망 강화.</li>
+<li><code>Amazon Kuiper</code> 위성 생산 및 발사 가속화, <code>Kratos</code>의 <code>5G NTN</code> 시스템 개발은 차세대 통신 인프라 및 우주 경제 성장 예고.</li>
+</ul>
+<h3>규제/정책</h3>
+<p>✨ <strong>정부의 에너지 시장 개입 및 정책</strong></p>
+<ul>
+<li><code>조지아주</code>는 주유세 유예 법안에 서명.</li>
+<li><code>일본</code>은 휘발유 가격 억제를 위해 예비비 <strong>8,000억 엔</strong> 지출 예정.</li>
+<li><code>중국</code>도 유가 규제 임시 조치를 시행하며 소매 휘발유 가격을 인상할 계획.</li>
+<li>미국 에너지부 장관은 전략비축유(<code>SPR</code>) 추가 방출 가능성은 "희박하다"고 밝혔으나, 정유 효율성 제고 등 유가 인하 위한 추가 수단 검토 중이라고 언급.</li>
+<li><code>미국</code>은 유럽연합에 친환경 규제 완화 없이는 심각한 에너지 위기가 닥칠 것이라고 경고하며 에너지 안보의 중요성 강조.</li>
+</ul>
+<p>✨ <strong>미국 국내 경제 및 사회 정책</strong></p>
+<ul>
+<li>미 재무부와 교육부는 학자금 대출 회수에 나설 예정.</li>
+<li><code>플로리다</code> 도시들은 <code>스프링 브레이크</code> 혼란 이후 통행금지 시행.</li>
+<li><code>트럼프</code> 행정부는 낙태 시술 보장 의무와 관련하여 <strong>13개 주</strong>에 대한 조사 착수.</li>
+<li><code>트럼프</code>는 <code>SAVE</code> 법안 없이는 국토안보부 자금 지원을 하지 않겠다고 발언.</li>
+<li><code>FCC</code>는 해외 제조 소비자용 라우터 수입 금지, 자국 중심 기술 공급망 재편 및 보안 강화 움직임.</li>
+<li>대법원이 선거일 이후 도착 연방 투표용지 개표 여부를 결정하고, 캘리포니아에서 호스피스 사기 혐의가 조사받는 등 미국 국내 정치 및 법률 이슈 지속.</li>
+</ul>
+<h3>종합 요약 &amp; 주의할 점</h3>
+<p>오늘 시장은 중동 지역의 지정학적 리스크가 전례 없이 고조되면서 극심한 변동성과 '극도의 공포' 심리에 휩싸였습니다. 특히 <code>트럼프</code> 전 대통령의 <code>이란</code>과의 협상 및 군사 행동 연기 발표와 <code>이란</code> 측의 강력한 부인이라는 엇갈린 메시지는 시장의 불확실성을 최대로 끌어올렸습니다. 이러한 긴장 상황에도 불구하고 <code>WTI</code>와 <code>브렌트유</code>가 <strong>10% 이상</strong> 급락하고, 석유 생산업체들이 <strong>20년</strong> 만에 최대 규모의 <code>숏 포지션</code>을 취한 것은 단순한 전쟁 위험을 넘어선 복합적인 시장 역학(평화 협상 기대감, 글로벌 경기 침체 우려 등)이 작용하고 있음을 시사하는 역설적인 신호입니다.</p>
+<p>동시에 인공지능(<code>AI</code>)은 여전히 강력한 성장 동력이자 산업 전반의 패러다임을 변화시키는 핵심 트렌드로 자리매김하고 있습니다. <code>젠슨 황</code> <code>NVIDIA</code> CEO의 발언처럼 <code>AI</code>는 코딩 가능한 인력 규모를 폭증시키고 직업의 본질을 변화시킬 것이며, 모든 직무에서 <code>AI</code> 활용 능력이 필수 역량이 될 것입니다. <code>AMD</code>의 <code>AI</code> 칩 시장 공략 강화, <code>OpenAI</code>와 <code>Tesla</code>의 공격적인 <code>AI</code> 인프라 투자, 그리고 <code>AI</code>의 막대한 전력 수요에 대한 솔루션 모색(<code>핵융합 에너지</code>, <code>연료전지</code>, <code>그리드 통합 AI 공장</code>) 등은 <code>AI</code> 혁명이 가속화되고 있음을 보여줍니다.</p>
+<p><strong>투자자로서 주의해야 할 리스크 및 유의사항:</strong></p>
+<ul>
+<li><strong>지정학적 리스크의 불확실성:</strong> <code>미국-이란-이스라엘</code> 간의 긴장 상황은 언제든 급변할 수 있으며, 특히 <strong>4월 9일</strong>로 언급된 '전쟁 종료 시점'과 같은 특정 시점들을 면밀히 주시해야 합니다. <code>트럼프</code>의 발언과 <code>이란</code>의 부인 사이의 진실 공방은 시장의 단기 변동성을 극대화할 수 있습니다.</li>
+<li><strong>에너지 시장의 변동성:</strong> <code>유가</code>의 급격한 등락은 글로벌 인플레이션 압력과 경기 침체 가능성에 직접적인 영향을 미칩니다. <code>석유 생산자</code>들의 대규모 <code>숏 포지션</code>은 헤드라인 뉴스만을 쫓기보다 실물 시장의 미묘한 신호들을 분석해야 함을 경고합니다.</li>
+<li><strong>글로벌 인플레이션 압력:</strong> <code>유가</code> 급등과 더불어 비료 공급 차질로 인한 식량 가격 인상 경고는 인플레이션 압력을 더욱 심화시킬 수 있으며, 이는 각국 중앙은행의 통화 정책에 상당한 부담으로 작용할 것입니다.</li>
+<li><strong>거시경제 지표 악화:</strong> <code>골드만삭스</code>의 경기 침체 확률 상향 조정, <code>GDP</code> 성장률 하향 조정 등 거시경제 지표의 둔화 신호는 전반적인 시장 심리에 부정적인 영향을 미칠 수 있습니다.</li>
+</ul>
+<p><strong>마음가짐:</strong>
+현재는 <code>극도의 공포</code>와 예측 불가능성이 지배하는 시기이므로, 투자자들은 <strong>보수적인 접근 방식</strong>을 유지하고 <strong>위험 관리</strong>에 최우선을 두어야 합니다. 단기적인 지정학적 이벤트에 일희일비하기보다는, <code>AI</code>와 같은 <strong>장기적인 혁신 기술 테마의 구조적 성장</strong>에 주목하고, 관련 인프라(반도체, 데이터센터, 에너지) 및 서비스 분야의 기회를 선별적으로 탐색하는 전략이 필요합니다. 실시간으로 변하는 뉴스 흐름과 주요국 중앙은행의 통화 정책 변화를 면밀히 모니터링하며, <strong>신중하고 선별적인 투자</strong>를 통해 불확실성에 대비해야 합니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">🏆 최종 종합 리포트</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><h2>최종 브리핑: 중동발 불확실성 속 AI 혁명 가속화 (2026년 3월 23일~24일)</h2>
+<h3>1. 시장 분위기: '극도의 공포'와 예측 불가능한 변동성</h3>
+<p>오늘 글로벌 금융 시장은 중동 지역의 지정학적 리스크가 최고조에 달하며 <strong>극심한 변동성과 '극도의 공포' 심리</strong>에 휩싸였습니다. 특히 <strong>미국과 이란 간의 협상 여부를 둘러싼 상반된 보도</strong>가 시장에 극심한 혼란을 야기하며 주요 자산들의 가격을 롤러코스터처럼 움직였습니다.</p>
+<p>초기에는 이란의 보복 위협과 이스라엘의 군사 작전 개시 소식이 유가를 급등시키고 한국 코스피 및 일본 닛케이 225가 5% 이상 폭락하는 등 아시아 증시 전반에 걸친 매도세를 촉발했습니다. 그러나 도널드 트럼프 전 대통령이 이란과의 "매우 긍정적이고 생산적인 대화"를 언급하며 군사 공격을 5일간 연기했다고 발표하자 유가가 급락하고 S&amp;P 500 선물이 급등하는 등 안도 랠리가 펼쳐지기도 했습니다. 하지만 이란 측이 트럼프의 발언을 즉각 "심리전"이자 "가짜 뉴스"라고 강력히 부인하면서 시장은 다시 불확실성에 직면했습니다.</p>
+<p>이러한 혼란 속에서 <strong>금과 은 같은 안전 자산마저 급락</strong>하며 '지정학적 위기 시 안전 자산 상승'이라는 전통적인 패턴을 깼습니다. 이는 채권 금리 상승, 유동성 부족, 대규모 헤지펀드 숏 포지션 등의 복합적인 요인이 작용한 것으로 분석됩니다.</p>
+<h3>2. 핵심 시장 이슈: 중동 지정학적 리스크와 에너지 시장의 역설</h3>
+<p><strong>가장 중요한 시장 동인은 단연 미국-이란-이스라엘 간의 복잡한 역학 관계입니다.</strong></p>
+<ul>
+<li><strong>긴장 최고조의 상반된 내러티브:</strong> 트럼프의 '협상' 발언에도 불구하고 미 국방부는 이란에 공수부대 파병을 검토하고 미 해병대가 중동에 추가 파병될 예정이라는 소식이 전해졌습니다. 이란은 호르무즈 해협 봉쇄 및 기뢰 매설 위협을 경고했으며, 이란 혁명수비대는 이스라엘 및 역내 미군 기지에 대한 공격을 감행했다고 주장했습니다. 이스라엘 채널 12에서 4월 9일이 이란과의 전쟁 종료 시점으로 언급되는 등 긴장의 정점 혹은 해결의 분기점이 될 수 있는 시점들이 제시되고 있습니다.</li>
+<li><strong>유가 급락의 역설:</strong> 이처럼 전쟁 가능성이 고조됨에도 불구하고, NYMEX WTI 원유와 브렌트유 선물은 10% 이상 급락하며 배럴당 100달러 선이 무너졌습니다. 이는 표면적인 긴장감에도 불구하고, 이스라엘의 '이란 미사일 프로젝트 5년 동결 합의' 보도와 같은 평화 협상 기대감, 혹은 고유가 장기화가 세계 경기 침체로 이어질 것이라는 우려가 더 크게 작용한 결과로 보입니다. 특히 <strong>석유 생산업체들이 20년 만에 최대 규모의 오일 숏 포지션을 취했다는 점</strong>은 실물 시장의 주체들이 현재 유가가 헤지하기에 충분히 높다고 판단하고 있음을 시사하는 중요한 신호입니다.</li>
+<li><strong>글로벌 에너지 위기 경고:</strong> 국제에너지기구(IEA)는 중동 분쟁이 장기화될 경우 1970년대 오일 쇼크보다 심각한 에너지 위기를 초래할 수 있다고 경고하며, 각국 정부는 에너지 정책 검토 및 유가 규제에 나서는 모습입니다.</li>
+</ul>
+<h3>3. 기술 분야 하이라이트: AI 혁명의 가속화와 새로운 도전</h3>
+<p>지정학적 불확실성 속에서도 인공지능(AI)은 여전히 강력한 성장 동력이자 산업 전반의 패러다임을 변화시키는 핵심 트렌드로 자리매김하고 있습니다.</p>
+<ul>
+<li><strong>AI의 역할 변화:</strong> 젠슨 황 NVIDIA CEO는 AI가 코딩 가능한 사람의 수를 "3천만 명에서 아마 10억 명으로 늘렸다"고 강조하며, 미래의 모든 직업에서 AI 활용 능력이 필수 역량이 될 것이라고 예측했습니다. 단순 업무는 AI로 대체될 가능성이 커, 노동 시장의 근본적인 변화가 예상됩니다.</li>
+<li><strong>AI 칩 시장 경쟁 심화:</strong> NVIDIA는 여전히 AI 칩 시장을 선도하고 있으나, AMD가 한국 업스테이지 AI와 1만 개 이상의 Instinct MI355 AI 가속기 구매를 논의하며 강력한 2위 대안으로 부상하고 있습니다. 이는 엔비디아 의존도를 줄이고 '멀티 벤더 AI 스택'을 구축하려는 각국의 노력과 맞물려 있습니다.</li>
+<li><strong>주요 기업의 AI 투자 확대:</strong> OpenAI는 2026년 IPO를 앞두고 기업 계약 확보를 위해 사모펀드에 17.5% 수익률 보장 등 공격적인 전략을 펼치고 있으며, 핵융합 스타트업 Helion Energy로부터 에너지를 구매하는 방안을 모색하는 등 AI의 막대한 전력 수요에 선제적으로 대응하고 있습니다. 테슬라와 스페이스X는 오스틴에 로봇, 자율주행, 우주 컴퓨팅을 위한 첨단 AI 칩을 생산할 대규모 '테라팹' 공장 건설 계획을 발표하며 자체 반도체 역량 강화에 나섰습니다.</li>
+<li><strong>AI 인프라 및 전력 문제:</strong> 데이터센터의 폭발적인 전력 수요 증가는 FuelCell Energy의 맞춤형 파워 블록 출시, NVIDIA와 전력 회사들의 '그리드 통합 AI 공장' 구축 협력 등 새로운 에너지 솔루션 개발을 가속화하고 있습니다.</li>
+<li><strong>기타 기술 트렌드:</strong> 애플은 2026년 첫 폴더블 아이폰 출시를 예상하며 스마트폰 시장에 큰 변화를 예고했고, 애플 지도에 검색 광고를 도입하며 서비스 매출 확대를 모색합니다. 모빌아이(Mobileye)와 위라이드(WeRide)는 자율주행 기술의 상업화 및 글로벌 확장을 지속하고 있습니다.</li>
+</ul>
+<h3>4. 결론 및 향후 전망</h3>
+<p>오늘 시장은 중동 지역의 급변하는 지정학적 상황이 초래하는 단기적인 극심한 변동성과 AI가 이끄는 장기적인 기술 패러다임 전환이라는 두 가지 큰 흐름 속에서 움직였습니다.</p>
+<p><strong>핵심적으로 주시해야 할 사항:</strong></p>
+<ol>
+<li><strong>중동 정세의 실제 전개 방향:</strong> 미국-이란 간의 엇갈린 메시지가 지속되는 가운데, 실제 군사적 충돌이 발생할지, 혹은 외교적 진전이 있을지에 따라 글로벌 금융 시장은 극명하게 반응할 것입니다. 특히 4월 9일로 언급된 '전쟁 종료 시한' 등 특정 시점들이 중요하게 작용할 수 있습니다.</li>
+<li><strong>유가와 글로벌 인플레이션:</strong> 지정학적 긴장 속 유가 급락은 단기적 안도감을 줄 수 있으나, 석유 생산자들의 숏 포지션과 IEA의 에너지 위기 경고는 복잡한 시장 역학을 보여줍니다. 유가 흐름은 각국 중앙은행의 통화 정책 결정(금리 인상/인하)에 지대한 영향을 미칠 것입니다.</li>
+<li><strong>AI 혁신의 가속화와 에너지 문제:</strong> AI는 모든 산업의 생산성을 향상시키고 새로운 비즈니스 모델을 창출할 강력한 성장 동력이지만, 막대한 전력 소모라는 도전 과제를 안고 있습니다. AI 인프라(칩, 데이터센터, 전력) 및 관련 서비스 시장의 성장은 지속될 것이며, 차세대 에너지원 개발에 대한 관심도 더욱 커질 것입니다.</li>
+</ol>
+<p>투자자들은 중동 사태의 실시간 전개와 에너지 시장의 미묘한 신호, 그리고 주요 중앙은행의 통화 정책 방향을 면밀히 주시하면서, AI와 같은 혁신 기술 분야의 장기적인 구조적 성장을 염두에 둔 신중하고 선별적인 투자 전략을 유지할 필요가 있습니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">📄 Part 1/7</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><h3>1. 개요 및 시장 분위기 강조</h3>
+<p>오늘 금융 시장은 중동 지정학적 리스크 고조로 인한 극심한 불안감과 함께 전반적인 투자심리 위축을 보였습니다. 특히 <strong>미국과 이란 간의 군사적 긴장이 최고조에 달하며, 이는 유가 급등(장중 급락 반전)과 광범위한 글로벌 증시 하락을 야기</strong>했습니다. 아시아 시장은 매도세가 심화되었으며, <strong>한국의 코스피 지수는 5% 이상 폭락</strong>하며 시장의 패닉 상태를 여실히 보여주었습니다.</p>
+<p>주목할 점은 이란의 잠재적 보복 위협과 함께 카타르의 헬륨 수출 급감 경고가 나오면서 <strong>반도체 생산에도 심각한 위협</strong>이 될 수 있다는 점입니다. 비트코인 고래들의 대규모 매도 또한 암호화폐 시장에 약세 신호를 보냈습니다. 기술 섹터에서는 AI 에이전트 개발 소식이 있었지만, 테슬라의 테라팹 프로젝트에 대한 비관적인 분석도 나와 혼조세를 보였습니다.</p>
+<p><strong>핵심 시장 분위기:</strong> 지정학적 불안정으로 인한 극심한 리스크 회피 심리, 원자재 시장의 높은 변동성, 아시아 증시의 대규모 하락, 그리고 예상치 못한 안전 자산(금/은)의 하락이 특징입니다.</p>
+<h3>2. 주요 금융 및 기술 트렌드 분석</h3>
+<h4>2.1. 글로벌 지정학적 리스크 및 에너지 시장</h4>
+<ul>
+<li><strong>중동 긴장 고조:</strong> 미국과 이란 간의 긴장이 최고조에 달하며 이란은 미국의 전력 기반 시설 공격 시 걸프 지역 전체로 보복을 확대하겠다고 경고했습니다. 특히 호르무즈 해협 및 페르시아만 봉쇄 위협은 글로벌 에너지 공급망에 치명적인 영향을 줄 수 있습니다. 이미 이스라엘군은 테헤란 기반 시설에 대규모 공습을 개시한 것으로 보도되었습니다.</li>
+<li><strong>유가 변동성 확대:</strong> 브렌트유는 트럼프 및 이란 전쟁 위협에 배럴당 114달러까지 상승했으나, 이후 30분 만에 4% 이상 급락하는 등 극심한 변동성을 보였습니다. 골드만삭스는 지정학적 리스크 증가로 2026년 원유 가격 전망치를 대폭 상향 조정(브렌트유 평균 85달러, 단기 110달러)하며 에너지 충격이 장기화될 수 있음을 시사했습니다.</li>
+<li><strong>정부의 에너지 정책:</strong> 조지아주는 주유세 유예 법안에 서명했고, 일본은 휘발유 가격 억제를 위해 예비비 8,000억 엔을 지출할 예정입니다. 중국도 유가 규제 임시 조치를 시행하며 소매 휘발유 가격을 인상할 계획입니다.</li>
+<li><strong>연관 산업 위협:</strong> 호주 최대 비료 원료 제조업체의 생산 중단 위기와 전 중앙은행 자문위원의 "6~9개월 내 식량 가격 충격" 경고는 유가뿐 아니라 비료 공급 차질이 글로벌 식량 위기로 이어질 수 있음을 경고합니다.</li>
+</ul>
+<h4>2.2. 글로벌 금융 시장 동향</h4>
+<ul>
+<li><strong>증시 대폭 하락:</strong> 선물 시장은 비트코인(BTC) 3.58%를 비롯해 주요 지수(RTY, NQ, ES, YM)가 1% 이상 하락하며 폭락세를 보였습니다. 아시아 시장은 특히 심각한 매도세를 경험하며 한국 코스피와 일본 닛케이 225는 5% 이상 급락했습니다. 이는 이란 분쟁에 따른 지정학적 불확실성과 유가 상승 위험이 복합적으로 작용한 결과입니다.</li>
+<li><strong>채권 시장의 압력:</strong> 미국 10년 만기 국채 금리가 3주 만에 약 45bp 상승하여 4.40%에 육박, 시장 참여자들은 4.50%~4.60%를 '마지노선'으로 주시하고 있습니다. 금리 추가 상승 시 가계 및 기업 차입 비용 증가, 주식 가치 평가 압박, 경제 성장 둔화 위험이 있습니다.</li>
+<li><strong>안전 자산의 역설:</strong> 금과 은은 오늘 장중 급격한 반전으로 몇 시간 만에 약 2조 달러의 시가총액을 잃었습니다. 이는 지정학적 긴장 고조 시 안전 자산으로 금 가격이 상승하던 최근의 패턴을 깬 것으로, 채권 금리 상승, 강제 청산, 유동성 부족 및 '헤드라인 피로감' 등이 원인으로 분석됩니다.</li>
+<li><strong>사모 신용 시장 불안:</strong> 세계 최대 규모의 블랙스톤 프라이빗 크레딧 펀드가 2022년 이후 첫 월간 손실을 기록하며, 사모 시장의 잠재적 스트레스를 시사했습니다.</li>
+<li><strong>ECB 금리 인상 전망:</strong> 골드만삭스는 유럽중앙은행(ECB)이 2026년 4월과 6월에 각각 25bp씩 두 차례 금리 인상을 단행할 것으로 예상하며, 이는 기존 전망을 뒤집는 매파적인 전망입니다.</li>
+</ul>
+<h4>2.3. 기술 및 혁신 동향</h4>
+<ul>
+<li><strong>AI 에이전트 개발:</strong> 마크 저커버그 메타 CEO가 자신의 업무를 보조할 개인 AI 에이전트를 개발 중이라는 소식이 전해지며, AI 기술의 고도화된 적용 사례에 대한 기대를 높였습니다. ($META)</li>
+<li><strong>반도체 산업의 도전:</strong> 행동주의 펀드 엘리엇이 반도체 설계 소프트웨어 업체 시높시스(Synopsys)에 상당 지분을 확보하며 기술 투자가 지속됨을 보여줬습니다. 그러나 카타르의 헬륨 수출 급감 경고는 글로벌 헬륨 생산량의 3분의 1을 차지하는 카타르의 상황으로 인해 반도체 생산에 심각한 차질을 초래할 수 있습니다. 또한, 테슬라의 테라팹 프로젝트는 막대한 자본 지출과 반도체 물리학적 난관에 부딪힐 수 있다는 경고가 나왔습니다.</li>
+</ul>
+<h4>2.4. 암호화폐 시장</h4>
+<ul>
+<li><strong>고래들의 대규모 매도:</strong> 비트코인 고래(5,000 BTC 초과 보유)들이 지난 4시간 동안 24,453 BTC(17억 달러 이상)를 거래소에 대량 매도하며 역사적으로 강력한 약세 신호로 해석되고 있습니다.</li>
+<li><strong>지정학적 리스크의 영향:</strong> 주말 동안 지정학적 리스크가 터지고 CME가 휴장하자, 트레이더들이 온체인에서 오일을 거래하는 현상이 포착되며 암호화폐가 전통 금융 시장의 대안 또는 보완재로 활용될 가능성을 보여주었습니다.</li>
+</ul>
+<h4>2.5. 주요 산업별 동향</h4>
+<ul>
+<li><strong>인도 제약 시장 (세마글루타이드):</strong> 노보 노디스크의 특허 만료에 따라 선파마, 자이더스 라이프사이언스, 닥터 레디, 글렌마크, 알켐, 토렌트 제약 등 여러 인도 제약사들이 세마글루타이드(당뇨병 및 비만 치료제) 주사제를 경쟁력 있는 가격으로 대거 출시했습니다. 이는 인도 내 비만 및 당뇨병 치료제 접근성을 크게 높이고 시장 경쟁을 심화시킬 것입니다.</li>
+<li><strong>상품 시장:</strong> 제프리스 분석가는 중동 에너지 충격으로 인한 경기 침체 가능성이 구리 가격을 급격히 하락시킬 수 있다고 경고했습니다. 이미 LME 3개월물 구리는 이번 달 약 11% 하락했습니다.</li>
+<li><strong>인도 철도 인프라:</strong> RITES Ltd가 RDSO로부터 시험 선로 유지 보수 계약을 수주하며 안정적인 수익과 인도 철도 인프라 분야에서의 입지를 강화했습니다.</li>
+</ul>
+<h4>2.6. 기타 주요 뉴스</h4>
+<ul>
+<li><strong>미국 국내 경제/정책:</strong> 미 재무부와 교육부는 학자금 대출 회수에 나설 예정이며, 플로리다 도시들은 스프링 브레이크 혼란 이후 통행금지를 시행했습니다. 트럼프 행정부는 낙태 시술 보장 의무와 관련하여 13개 주에 대한 조사에 착수했습니다.</li>
+<li><strong>미국 달러 가치:</strong> 연준 창립(1913년) 이후 미국 달러의 구매력이 지속적으로 하락했다는 분석이 재조명되었습니다.</li>
+<li><strong>프랑스 선거:</strong> 사회당이 파리를 수성한 반면, 르펜의 포퓰리스트 정당은 지방 선거에서 역사적인 약진을 보여 유럽 내 정치적 불안정성 증대 가능성을 시사했습니다.</li>
+</ul>
+<h3>3. 결론 및 시사점</h3>
+<p>오늘 시장은 중동 지역의 급변하는 지정학적 상황이 전례 없는 방식으로 글로벌 금융 및 원자재 시장을 뒤흔들고 있음을 명확히 보여주었습니다. 유가와 금/은을 포함한 주요 자산의 극심한 변동성은 투자자들에게 상당한 불확실성을 안겨주고 있으며, 특히 한국을 포함한 아시아 증시의 대폭 하락은 이러한 리스크가 현실화되고 있음을 반영합니다.</p>
+<p><strong>주목해야 할 뉴스 및 시사점:</strong></p>
+<ol>
+<li><strong>이란-미국-이스라엘 갈등의 최고조:</strong> 호르무즈 해협 및 페르시아만 봉쇄 위협은 글로벌 에너지 공급뿐 아니라 해상 물류 전반에 걸쳐 막대한 충격을 줄 수 있으며, 이는 당분간 시장의 최우선 리스크로 작용할 것입니다.</li>
+<li><strong>헬륨 공급 차질 및 반도체 위협:</strong> 카타르의 헬륨 수출 급감은 반도체 제조에 필수적인 자원 부족으로 이어져 기술 섹터의 공급망에 새로운 병목 현상을 유발할 수 있습니다.</li>
+<li><strong>예상 밖의 금/은 하락:</strong> 지정학적 위기 속에서 안전 자산의 전통적인 역할을 하지 못하는 금과 은의 흐름은 시장 참여자들이 단순히 위험 회피를 넘어 채권 금리 상승과 유동성 부족 같은 다른 거시적 요인을 복합적으로 고려하고 있음을 시사합니다.</li>
+<li><strong>인도 제약 시장의 변화:</strong> 세마글루타이드 제네릭의 대거 출시는 인도 헬스케어 시장의 접근성을 높이고 경쟁을 심화시키는 긍정적인 측면과 오리지널 의약품 제조사들의 수익성에 미칠 영향을 동시에 주시해야 합니다.</li>
+<li><strong>글로벌 인플레이션 압력:</strong> 유가 급등과 더불어 비료 공급 차질로 인한 식량 가격 인상 경고는 인플레이션 압력이 더욱 심화될 수 있음을 보여주며, 이는 각국 중앙은행의 통화 정책에 상당한 부담으로 작용할 것입니다.</li>
+</ol>
+<p>투자자들은 중동 정세의 전개와 국제 유가 및 채권 금리의 변화를 면밀히 주시하며, 극심한 변동성에 대비하는 보수적인 전략을 유지할 필요가 있습니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">📄 Part 2/7</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><h3>Ⅰ. 서론 및 시장 분위기 요약</h3>
+<p>2026년 3월 23일 글로벌 금융 시장은 중동 지역의 지정학적 긴장과 관련된 <strong>극심한 변동성</strong>으로 하루를 시작했으나, 도널드 트럼프 미국 대통령의 <strong>예상치 못한 이란 관련 발표</strong>로 인해 시장 분위기가 급반전되는 드라마틱한 모습을 보였습니다. 특히 트럼프 대통령의 발표 직후 유가는 급락하고 주식 시장은 크게 반등하는 등 위험 선호 심리가 일시적으로 회복되었습니다.</p>
+<p>이날 시장은 불안정한 중동 정세로 인한 고유가 우려, 금리 인상 전망 강화, 그리고 주요 아시아 증시의 폭락 등 전반적인 위험 회피 분위기가 지배적이었습니다. 하지만 트럼프 대통령의 발언 이후, 단기적으로나마 지정학적 위험이 완화될 것이라는 기대감에 시장은 빠르게 안도 랠리를 펼쳤습니다. 이러한 <strong>극적인 시장 전환</strong>이 금일 보고서의 핵심적인 강조점입니다.</p>
+<h3>Ⅱ. 시장 분위기 및 주목해야 할 뉴스 강조</h3>
+<p><strong>1. 중동 지정학적 긴장의 극적인 반전과 시장 영향 (★★★★★ 중요)</strong></p>
+<ul>
+<li><strong>초기 긴장 고조:</strong> 이란은 자국 섬 및 해안 공격 시 페르시아만에 기뢰를 매설하겠다고 위협하며 트럼프 대통령의 48시간 최후통첩에 대한 강경 대응을 시사했습니다. 이스라엘 벤구리온 공항에 사이렌이 울리고 승객이 대피했다는 보도와 이란 내 군사 시설 피격 소식까지 전해지며 중동 리스크가 최고조에 달했습니다. 이러한 긴장감은 국제 유가를 배럴당 101달러 이상으로 급등시키고, 글로벌 증시에 하방 압력을 가했습니다.</li>
+<li><strong>트럼프 대통령의 전격 발표와 시장 급반전:</strong> 한국 시간 저녁(미 동부 시간 오전)에 트럼프 대통령이 미국과 이란이 중동 적대 행위 완전 해결을 위해 "매우 긍정적이고 생산적인 대화를 나눴다"고 밝히며, 이란 발전소 및 에너지 기반 시설에 대한 모든 군사 공격을 5일간 연기하도록 국방부에 지시했다고 발표했습니다.</li>
+<li><strong>즉각적인 시장 반응:</strong> 이 발표 직후 시장은 즉각적으로 반응했습니다.<ul>
+<li><strong>유가 급락:</strong> 국제 유가는 배럴당 100달러 선을 하회하며 급락했습니다.</li>
+<li><strong>주식 시장 급반등:</strong> S&amp;P 500 선물은 2.5% 급등하며 안도 랠리를 펼쳤습니다.</li>
+<li><strong>변동성 완화:</strong> CBOE 변동성 지수(VIX)는 한때 30까지 폭등했으나, 트럼프 발표 이후 진정될 조짐을 보일 것으로 예상됩니다.</li>
+<li><strong>금리 인상 전망 완화:</strong> 영국 중앙은행(BoE)과 유럽중앙은행(ECB)의 금리 인상 전망도 일시적으로 축소되는 모습이 관찰되었습니다.</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 귀금속 시장의 대규모 투매 및 헤지펀드 역할 (★★★★☆ 중요)</strong></p>
+<ul>
+<li><strong>금 가격 폭락:</strong> 최근 72시간 동안 금 가격이 온스당 $4,520에서 $4,100로 폭락했으며, 지난주 국제 금 가격은 11% 이상 급락하여 1983년 이후 최악의 주간 하락폭을 기록했습니다.</li>
+<li><strong>헤지펀드의 대규모 숏 포지션:</strong> 최신 CFTC 보고서에 따르면 헤지펀드는 최근 보고 기간 동안 약 15억 5천만 달러 규모의 금 매도 포지션을 추가했으며, 총 금 매도 익스포저는 약 230억 달러에 달하는 것으로 나타났습니다. 이는 시장 펀더멘털보다는 레버리지를 이용한 투기적 매도 압력이 가격 하락을 주도했음을 시사합니다.</li>
+<li><strong>은 가격 폭락 및 파급 효과:</strong> 은 또한 글로벌 및 인도 시장에서 급락세를 보였으며, 특히 은 ETF의 대규모 청산이 하락세를 증폭시켰습니다. 인도 금 NBFC(비은행 금융 회사)인 Muthoot Finance와 Manappuram Finance는 담보 가치 하락으로 압박을 받았고, 이는 마진콜 위험 및 담보 보석 경매 가능성으로 이어질 수 있습니다.</li>
+</ul>
+<p><strong>3. 아시아 주요 증시의 급락세 (★★★☆☆ 중요)</strong></p>
+<ul>
+<li><strong>KOSPI 지수 폭락:</strong> 한국 코스피(KOSPI) 지수는 -6.49% 폭락하여 5,405.75를 기록하는 등 아시아 증시 전반에 걸친 매도세를 반영했습니다.</li>
+<li><strong>인도 증시 폭락:</strong> 인도 Nifty 50 지수와 Sensex 또한 중동 긴장, 루피화 사상 최저치, 외국인 자금 유출 등으로 2~2.5% 급락했습니다. 금속, 은행, 금융 섹터가 특히 큰 타격을 입었습니다. 이는 2020년 코로나19 팬데믹 당시의 폭락(고점 대비 38%)에는 미치지 못하지만, 최고점 대비 약 15% 조정은 심각한 수준으로 평가됩니다.</li>
+</ul>
+<h3>Ⅲ. 주요 금융 및 기술 트렌드 분석</h3>
+<p><strong>1. 금융 시장 동향</strong></p>
+<ul>
+<li><strong>금리 인상 기대감:</strong> 거래자들은 2026년에 영국은행이 0.25% 금리 인상을 네 번 단행할 것으로 완전히 반영하는 등 금리 인상 압력이 높았으나, 트럼프 발언 이후 전망이 다소 완화되었습니다.</li>
+<li><strong>미국 시장 지표:</strong> S&amp;P 500 ETF($SPY)는 초기 -0.6% 하락했으나 트럼프 발언 후 급반등했고, 러셀 2000 ETF($IWM)는 소형주 시장의 취약성을 보이며 -1.1% 하락했습니다. 신흥 시장 ETF($EEM) 또한 -1.4% 하락하며 외국인 자금 유출의 영향을 받았습니다.</li>
+<li><strong>상품 시장 변동성:</strong> 유가($USO)는 지정학적 긴장에 +1.0% 급등했으나 이후 급락했고, 금 ETF($GLD)는 -4.9%로 급락하며 달러 강세, 금리 상승, ETF 청산의 영향을 받았습니다. 암호화폐($IBIT) 또한 -2.7% 하락하며 위험 자산 압박을 받았습니다.</li>
+</ul>
+<p><strong>2. 기술 트렌드 (AI 및 반도체)</strong></p>
+<ul>
+<li><strong>AI 경쟁 가속화 및 AMD의 약진:</strong> AMD($AMD)는 한국 스타트업 업스테이지 AI와 1만 개 이상의 Instinct MI355 AI 가속기 구매를 적극적으로 논의하며 AI 인프라 경쟁에서 중요한 돌파구를 마련했습니다. 이는 한국이 엔비디아 의존도를 줄이고 멀티 벤더 AI 스택을 구축하려는 전략과 맞물려 AMD의 개방형 소프트웨어 스택(ROCm)에 대한 매력을 부각시킵니다.</li>
+<li><strong>OpenAI의 IPO 준비 및 전략:</strong> OpenAI는 2026년 IPO를 앞두고 컴퓨팅 지출 목표를 대폭 축소하고 인력을 공격적으로 채용하고 있습니다. 특히 기업 AI 합작 투자를 위해 사모펀드 회사에 최소 17.5%의 수익률을 보장하고 최신 AI 모델에 대한 조기 접근 권한을 제공하는 등 독특한 전략을 구사하고 있습니다.</li>
+<li><strong>Tesla-SpaceX-xAI의 '테라팹' 건설:</strong> 일론 머스크는 오스틴에 로봇, 자율 주행, 우주 컴퓨팅을 위한 첨단 AI 칩을 생산할 새로운 칩 공장인 '테라팹' 건설 계획을 공개했습니다. 2027년 말 초기 생산, 2028년 본격 양산을 목표로 합니다.</li>
+<li><strong>SK하이닉스의 미국 증시 상장 추진:</strong> SK하이닉스는 자사주 소각 물량만큼 신주를 발행하여 10조~15조원 규모의 자금을 확보하고 미국 증시 ADR 상장을 추진할 예정입니다. 이는 글로벌 자금 확보 및 AI 시대 핵심 메모리 시장에서의 입지 강화를 위한 전략으로 보입니다.</li>
+<li><strong>인도 IT 시장의 AI 양자택일:</strong> 인도 Nifty IT 지수는 AI 도입이 클라우드 붐과 유사한 대규모 재평가 촉매제가 될 수 있다는 낙관론과, GenAI 도구로 인한 아웃소싱 업무 자동화로 파괴적 변화가 발생할 수 있다는 비관론 사이에서 갈등하고 있습니다.</li>
+</ul>
+<p><strong>3. 산업 및 기업별 동향</strong></p>
+<ul>
+<li><strong>에너지 및 친환경 산업:</strong><ul>
+<li>아다니 그린 에너지는 510메가와트 규모의 발전 프로젝트를 가동하며 친환경 에너지 부문 확장을 지속했습니다.</li>
+<li>힌두스탄 아연(HZL)과 타타 스틸은 HZL의 저탄소 아연 'EcoZen' 사용 확대를 위한 파트너십을 강화하며 친환경 철강 생산을 추진합니다.</li>
+<li>UAE는 합샨 가스 플랜트 재가동으로 대부분의 LNG 생산을 중단했습니다.</li>
+<li>유나이티드 항공은 고유가로 인한 제트 연료 비용 상승으로 일부 항공편을 감축하고, 2027년까지 유가가 배럴당 100달러 이상을 유지할 것으로 예상했습니다.</li>
+</ul>
+</li>
+<li><strong>인도 자동차 및 통신:</strong><ul>
+<li>보쉬와 타타 오토컴프 시스템즈(TACO)는 인도 EV 생태계 가속화를 위한 50:50 합작 법인을 설립하여 eAxle 시스템과 전기 모터 엔지니어링 및 제조에 집중할 계획입니다.</li>
+<li>Bharti Airtel은 지난 12개월간 구자라트주에 2,750개 이상의 5G 기지국을 구축하며 5G 네트워크를 대폭 강화했습니다.</li>
+</ul>
+</li>
+<li><strong>기타 기업 소식:</strong><ul>
+<li>베단타는 주당 11루피의 3차 중간 배당을 발표하며 높은 수익률을 제공했습니다.</li>
+<li>Grab은 Delivery Hero의 대만 푸드판다 배달 사업을 현금 6억 달러에 인수하며 동남아시아 외 첫 시장으로 확장합니다.</li>
+<li>Marine Electricals (India) Limited는 Synergy Shipbuilders N Dock Works Limited로부터 9천만 루피 규모의 전력 분배 시스템 공급 주문을 수주했습니다.</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. 거시 경제 및 기타 뉴스</strong></p>
+<ul>
+<li><strong>중국의 재정/세제 지원 가능성:</strong> 중국 CCTV는 유가 급등 시 중국이 재정 및 세제 지원책을 도입할 가능성이 있다고 보도했습니다. 또한 중국의 1~2월 비금융 해외직접투자는 전년 대비 11.1% 감소했습니다.</li>
+<li><strong>일본의 임금 인상 및 중동 대응:</strong> 일본 다카이치 총리는 중소기업에 임금 인상 바람을 확산시키는 것이 중요하다고 강조했으며, 중동 사태 영향 논의를 위한 패널을 화요일에 구성할 예정이라고 밝혔습니다. 동시에 국내 석유 제품에 즉각적인 영향은 없을 것이라고 진정시켰습니다. 일본 소비자들의 화장지 사재기 움직임도 관찰되었습니다.</li>
+<li><strong>ESG 논란:</strong> 전 세계 풍력 터빈 수요를 위해 매년 아마존 열대 우림에서 발사 나무 50만 그루가 불법 벌목되고 있다는 비판적인 보도가 나왔습니다.</li>
+<li><strong>뉴욕 지하철 이용객 증가:</strong> 뉴욕 혼잡 통행료 정책과 관련하여 2025년 지하철 이용객 수가 전년 대비 7.7% 증가한 12억 8천만 명을 기록했습니다.</li>
+<li><strong>핵융합 에너지 발전:</strong> 헬리온이 "과학적 손익분기점"에 거의 도달했다는 보도가 나오며 핵융합 에너지 분야의 진전을 알렸습니다.</li>
+</ul>
+<h3>Ⅳ. 결론 및 향후 전망</h3>
+<p>오늘 시장은 중동 지정학적 리스크라는 거대한 파고 속에서 시작되었으나, 트럼프 대통령의 대화 및 군사 행동 연기 발표라는 예상치 못한 변수로 인해 극적인 반전을 경험했습니다. 이는 지정학적 불확실성이 시장에 미치는 영향력이 얼마나 큰지를 다시 한번 보여주었습니다. 유가 급등과 급락, 아시아 증시 폭락 후의 S&amp;P 500 선물 급반등은 시장이 얼마나 민감하게 반응하는지를 명확히 보여주었습니다.</p>
+<p>기술 분야에서는 AI가 여전히 강력한 성장 동력으로 작용하고 있으며, AMD의 한국 시장 진출 성공, OpenAI의 IPO 준비, Tesla의 자체 칩 생산 계획 등은 치열한 경쟁 속에서도 혁신이 지속되고 있음을 보여줍니다.</p>
+<p>향후 며칠간은 트럼프 대통령이 언급한 미국-이란 간의 "생산적인 대화"의 구체적인 결과와 중동 정세의 실제적 안정화 여부에 따라 시장의 향방이 결정될 것으로 예상됩니다. 단기적으로는 안도 랠리가 나타날 수 있으나, 중장기적인 지정학적 불확실성은 여전히 잠재되어 있어 투자자들은 신중한 접근을 유지해야 할 것입니다. 특히 급락했던 귀금속 시장과 아시아 증시의 회복력에 주목해야 할 것입니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">📄 Part 3/7</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><p><strong>보고서 요약:</strong>
+오늘 시장은 중동 지정학적 긴장 완화에 대한 기대감과 동시에 AI 및 기술 섹터의 꾸준한 혁신 소식으로 복합적인 움직임을 보였습니다. 특히 <strong>미국과 이란 간의 상반된 협상 발표</strong>는 시장의 단기적인 안도 랠리에도 불구하고 상당한 불확실성을 주입하며 향후 추이를 면밀히 지켜봐야 할 주요 리스크 요인으로 부상했습니다. AI 칩 시장에서는 AMD가 엔비디아의 대안으로 부상하며 주목할 만한 성과를 보였고, 방위 및 엔터프라이즈 AI 분야에서도 다양한 기술 혁신이 보고되었습니다.</p>
+<h3>1. 글로벌 지정학 및 에너지 시장: 긴장 완화 vs. 불확실성 증폭</h3>
+<p><strong>주목해야 할 뉴스:</strong></p>
+<ul>
+<li><strong>미국-이란 분쟁:</strong> 도널드 트럼프 전 대통령이 이란과의 "생산적인 대화" 후 이란 에너지 시설에 대한 군사 공격 계획을 5일 연기한다고 발표했습니다. 이 소식에 <strong>유가는 순식간에 8~10% 이상 폭락</strong>하며 시장의 위험 선호 심리를 자극, 다우존스 선물은 1,000포인트 이상, S&amp;P 500 및 나스닥 100 선물 또한 각각 2% 이상 급등하는 <strong>"안도 랠리"</strong>를 보였습니다.</li>
+<li><strong>이란의 상반된 입장:</strong> 그러나 이란 언론(파르스 통신, 타스님 통신, 메흐르 통신, 미잔)은 트럼프의 발언을 즉각 부인하며 <strong>"직간접적인 접촉이 없었다", "심리전이다", "에너지 가격 인하와 군사 계획 시간 벌기 위한 것"</strong>이라고 강력히 반박했습니다. 또한, 이란은 "전쟁을 시작한 것은 우리가 아니므로 미국이 대화에 나서야 한다"는 입장을 밝혔습니다.</li>
+<li><strong>중재 노력:</strong> 튀르키예, 이집트, 파키스탄이 미국과 이란 사이에서 긴장 완화를 위한 메시지를 전달하고 있다는 보도도 나왔습니다.</li>
+<li><strong>IEA 경고:</strong> 국제에너지기구(IEA)는 이란 분쟁이 1970년대 오일 쇼크에 비견될 만한 심각한 에너지 위기를 초래할 수 있다고 경고하며, 상황의 심각성을 강조했습니다.</li>
+</ul>
+<p><strong>시장 분위기:</strong>
+트럼프의 공격 연기 발표는 단기적으로 시장의 불안감을 크게 해소하며 위험 자산의 반등을 이끌었으나, 이란 측의 강경한 부인으로 인해 이러한 안도감이 지속될지는 미지수입니다. <strong>누가 거짓말을 하고 있는지에 대한 혼란스러운 내러티브</strong>는 시장에 새로운 변동성을 가져올 수 있으며, 호르무즈 해협의 상황과 실제 외교적 진전 여부에 촉각을 곤두세워야 할 것입니다. 중동 지역의 긴장이 다시 고조될 경우, 유가 급등과 인플레이션 압력이 심화되어 글로벌 경제 성장에 부정적인 영향을 미칠 수 있습니다.</p>
+<h3>2. 인공지능(AI) 기술 및 반도체 산업: AMD의 전략적 도약과 AI 생태계 확장</h3>
+<p><strong>주목해야 할 뉴스:</strong></p>
+<ul>
+<li><strong>AMD의 AI 칩 시장 공략 강화 ($AMD):</strong> 한국 스타트업 업스테이지 AI가 AMD의 Instinct MI355 AI 가속기 1만 개 이상 구매를 적극 논의 중인 것으로 알려지면서, AMD는 AI 인프라 경쟁에서 중요한 전략적 돌파구를 마련할 것으로 보입니다. 이는 엔비디아 의존도를 줄이고 멀티 벤더 AI 스택을 구축하려는 한국의 '자주적 AI 인프라' 구축 노력과 맞물려 AMD의 대규모 도입 검증, 정부 지원 생태계 진출, 오픈 소프트웨어 스택(ROCm)의 이점 부각 등 긍정적인 요소로 작용할 것입니다.</li>
+<li><strong>AWS의 AI 기회 ($AMZN):</strong> Barclays는 OpenAI 및 Anthropic과의 계약을 기반으로 Amazon(AWS)의 AI 시장 점유율 확보에 대해 긍정적인 전망을 내놓으며, 목표가를 $300으로 상향 조정했습니다. AWS가 '에이전트 시대' AI 시장에서 유리한 위치에 있다고 평가했습니다.</li>
+<li><strong>Microsoft Azure의 도전 ($MSFT):</strong> Evercore ISI는 Microsoft Azure가 단기적으로 용량 문제에 직면해 있으나, 2026년 하반기에는 성장세가 가속화될 것으로 예상했습니다. Copilot 전략과 Microsoft 365 E7 옵션 또한 장기적인 성장 동력으로 언급되었습니다.</li>
+<li><strong>Nvidia의 AI 확장 ($NVDA):</strong> Nvidia는 Asylon과의 협력을 통해 로봇 보안 분야에서 물리적 AI 기술을 발전시키고 'DroneIQ Overwatch'를 출시하며 AI 기술의 응용 분야를 넓히고 있습니다.</li>
+</ul>
+<p><strong>시장 분위기:</strong>
+AI 칩 시장에서 엔비디아의 지배력은 여전하지만, AMD가 대규모 계약 논의를 통해 강력한 2위 대안으로 부상하고 있으며, 특히 '국가 AI 역량 구축'이라는 새로운 성장 전선에 발판을 마련하고 있습니다. 클라우드 서비스 제공업체인 AWS와 Microsoft Azure 또한 AI 인프라의 핵심 축으로서 지속적인 성장이 기대되나, 단기적인 공급망 및 용량 문제는 해결해야 할 과제로 남아있습니다. AI 기술은 반도체를 넘어 로봇 공학, 사이버 보안, 방위 산업 등 전 산업 분야로 빠르게 확산되는 추세입니다.</p>
+<h3>3. 기술 혁신 및 기업 동향: 폴더블폰, 자율 시스템, 사이버 보안</h3>
+<p><strong>주목해야 할 뉴스:</strong></p>
+<ul>
+<li><strong>Apple의 폴더블 아이폰 ($AAPL):</strong> BofA는 Apple이 2026년에 첫 폴더블 아이폰을 출시할 것으로 예상하며, 1천만~2천만 대의 생산량을 전망했습니다. 이는 현재 폴더블폰 시장의 경쟁사들을 훨씬 뛰어넘는 규모로, 스마트폰 시장에 큰 변화를 가져올 잠재력을 가지고 있습니다.</li>
+<li><strong>Mobileye의 자율주행 확장 ($MBLY):</strong> Mobileye는 미국의 주요 자동차 제조업체와 운전자 모니터링 시스템 공급 계약을 체결하며, 2027년부터 수백만 대의 차량에 EyeQ6L 칩을 공급할 예정입니다. 이는 자율주행 기술의 상용화가 점차 현실화되고 있음을 보여줍니다.</li>
+<li><strong>사이버 보안 강화 ($CRWD, $RBRK):</strong> CrowdStrike와 Rubrik은 Microsoft Defender와의 통합을 통해 엔터프라이즈 사이버 보안 솔루션을 강화하고 있습니다. CrowdStrike는 Falcon SIEM 플랫폼을 확장하고, Rubrik은 ID 복구 기능을 강화하는 동시에 업계 최초의 시맨틱 AI 거버넌스 엔진(SAGE)을 출시하며 AI 기반 보안 및 거버넌스 시장을 선도하고 있습니다.</li>
+<li><strong>방위 기술 및 자율 시스템 ($DPRO, $PDYN, $ONDS):</strong> Draganfly와 Palladyne AI는 분산형 드론 군집 기술인 SwarmOS를 발전시켜 차세대 전장 역량을 강화하고 있습니다. Ondas Holdings는 World View 인수를 통해 성층권 ISR(정보, 감시, 정찰) 분야로 확장하며 다영역 ISR 플랫폼을 구축하고 AI 기반 방어 생태계에서 입지를 강화했습니다.</li>
+</ul>
+<p><strong>시장 분위기:</strong>
+주요 기술 기업들은 차세대 디바이스(폴더블폰), 자율 시스템, 그리고 급증하는 사이버 위협에 대응하기 위한 AI 기반 솔루션 개발에 박차를 가하고 있습니다. 특히 국방 분야에서의 AI 및 자율 시스템 도입은 지정학적 긴장과 맞물려 더욱 가속화될 것으로 보이며, 이는 관련 기술 기업들에게 새로운 성장 기회를 제공할 것입니다.</p>
+<h3>4. 글로벌 통화 정책 및 인플레이션: Fed의 고심과 BOJ의 변화 시사</h3>
+<p><strong>주목해야 할 뉴스:</strong></p>
+<ul>
+<li><strong>연준(Fed)의 고민:</strong> 연준의 굴스비 위원은 현재가 "매우 중요한 시기"이며, "새로운 충격이 연준 계획에 차질을 줄 것"이라고 언급했습니다. 그는 인플레이션이 이미 불편할 정도로 높았고, 이제 고용보다 인플레이션이 "가장 큰 위험"으로 보인다고 진단하며, 인플레이션 기대 심리 안정의 중요성을 강조했습니다.</li>
+<li><strong>일본은행(BOJ)의 변화 가능성:</strong> BOJ는 약세인 엔화와 중동 분쟁으로 인한 인플레이션 압력 가중에 대응하여 4월 정책 문구 수정의 기반을 마련하고 있으며, 단기 금리 인상 가능성을 열어두고 있습니다. 일본 기업들은 3년 연속 5% 이상 임금 인상에 합의하며 지속적인 임금 상승 추세를 보여주고 있습니다.</li>
+</ul>
+<p><strong>시장 분위기:</strong>
+중동발 에너지 가격 변동성 증가는 글로벌 인플레이션 압력을 더욱 높이며 각국 중앙은행의 통화 정책 결정에 복잡성을 더하고 있습니다. 미국 연준은 인플레이션과 고용 사이에서 균형을 찾아야 하는 어려운 시기에 직면했으며, 일본은행은 오랜 기간의 완화 정책에서 벗어나 긴축 전환을 모색하는 움직임을 보이고 있습니다.</p>
+<h3>5. 암호화폐 시장 동향: 기관 투자자 유입 및 이더리움 국고 확장</h3>
+<p><strong>주목해야 할 뉴스:</strong></p>
+<ul>
+<li><strong>Bitmine Holdings의 이더리움 국고 확장 ($BMNR):</strong> Bitmine Holdings는 약 110억 달러 상당의 암호화폐 자산을 보유하고 있으며, 특히 이더리움 공급량의 약 3.86%에 해당하는 466만 ETH를 보유하고 있습니다. 이 중 314만 ETH를 스테이킹하여 연간 약 1억 8,400만 달러의 수익을 창출하고 있습니다. 이는 이더리움 상승세에 대한 높은 베타 프록시 역할을 하며, 대규모 기관 투자자들의 암호화폐 시장 참여가 지속되고 있음을 보여줍니다.</li>
+</ul>
+<p><strong>시장 분위기:</strong>
+기관 투자자들이 단순히 암호화폐를 보유하는 것을 넘어 스테이킹을 통해 수익을 창출하는 등 보다 적극적인 운용 전략을 펼치고 있습니다. 이는 암호화폐 시장이 점차 성숙해지고 있음을 시사하지만, 특정 자산(ETH)에 대한 집중과 암호화폐 가격 변동성은 여전히 주요 위험 요인으로 남아있습니다.</p>
+<h3>6. 기타 주요 소식</h3>
+<ul>
+<li><strong>인도 인프라 투자:</strong> G R Infraprojects는 인도 국립 고속도로 공단(NHAI)으로부터 2,440억 루피 규모의 고속도로 프로젝트를 수주하며 인프라 부문의 견고한 성장을 이어갔습니다.</li>
+<li><strong>Wipro의 한국 시장 확대:</strong> 위프로(Wipro Ltd)는 한국을 전략적 성장 시장으로 보고 서울 사무실 확장 및 새로운 이노베이션 랩 개설을 통해 한국 내 사업 운영 확장을 발표했습니다.</li>
+<li><strong>버크셔 해서웨이의 일본 투자 ($BRK.B):</strong> 버크셔 해서웨이는 일본 보험사인 도쿄해상홀딩스에 약 18억 달러를 투자할 계획을 밝혔습니다.</li>
+<li><strong>시카고 연방 준비 은행 국가 활동 지수:</strong> 실제 -0.11을 기록하며 예상치(0.04)와 이전치(0.18)를 하회, 경제 활동의 둔화를 시사했습니다.</li>
+<li><strong>골드만삭스의 시장 분석:</strong> S&amp;P 500 주식 중 약 14%만이 과매도 수준에 도달했으며, 이는 과거 주요 하락장(2025년 4월 50% 이상, 2022년 3분기 40% 이상)과 비교할 때 아직 광범위한 "항복(capitulation)" 단계는 아니라고 분석했습니다.</li>
+</ul>
+<h3>결론 및 향후 전망</h3>
+<p>오늘 시장은 중동 지정학적 리스크의 일시적 완화에 따른 안도감과 AI, 기술 분야의 견고한 성장 동력이 교차하는 양상을 보였습니다. 그러나 <strong>미국과 이란 간의 엇갈린 메시지</strong>는 시장의 최우선 관심사로, 앞으로 며칠간의 외교적 진전 여부가 글로벌 금융 시장의 방향을 결정할 핵심 변수가 될 것입니다. 이란 측의 주장대로 트럼프의 발언이 단순한 "심리전"이라면, 현재의 안도 랠리는 언제든 역전될 수 있는 취약한 기반 위에 서 있는 셈입니다.</p>
+<p>기술 섹터에서는 AI가 여전히 강력한 성장 테마이며, 반도체 기업들의 경쟁 구도 변화, 클라우드 인프라의 확장, 그리고 다양한 산업 분야로의 AI 응용이 지속될 것으로 예상됩니다. 중앙은행들은 높아지는 인플레이션 압력과 지정학적 불확실성 속에서 신중한 통화 정책을 펼칠 것으로 보이며, 에너지 가격의 향방이 이들의 결정에 큰 영향을 미 미칠 것입니다.</p>
+<p>투자자들은 중동 사태의 전개, 주요국 중앙은행의 통화 정책, 그리고 AI 기술의 상용화 및 확산 속도를 면밀히 주시하며 신중한 접근이 필요한 시점입니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">📄 Part 4/7</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><h3>I. 시장 분위기 및 주요 하이라이트</h3>
+<p>오늘 금융 시장은 중동 지정학적 리스크 완화 기대감과 AI 및 자율주행 기술 분야의 견고한 성장이 주요 화두였습니다. <strong>특히 도널드 트럼프 전 대통령의 이란 관련 발언이 시장 분위기를 급변시켰습니다.</strong></p>
+<p>트럼프는 폭스 비즈니스 등과의 인터뷰에서 이란과의 최근 대화가 "어젯밤에 있었다"고 밝히며, 이란이 "몹시 거래를 원하고 있다"고 언급했습니다. 그는 이란 고위 관계자와 대화 중이며 "최고 지도자는 아니지만, 이스라엘은 우리가 이룬 결과에 매우 기뻐할 것"이라고 덧붙였습니다. 이란 측은 대화를 부인하는 등 엇갈린 보도가 나왔지만, 트럼프의 발언은 긴장 완화에 대한 기대를 높였습니다.</p>
+<p>이러한 <strong>이란 발(發) 긴장 완화 기대감</strong>은 유가 하락과 함께 항공, 레저 등 관련 섹터의 강세로 이어졌으며, 다우 선물 지수가 900포인트 이상 급등하는 등 미국 증시 전반에 걸쳐 긍정적인 영향을 미쳤습니다. 반면 안전 자산으로 분류되는 금 가격은 하락했습니다. 연준 인사들의 발언에서는 고유가로 인한 인플레이션 2차 효과 발생 시 금리 인상이 필요할 수 있다는 신중론과 함께, 아직 금리 인하 전망을 유지하는 모습이 공존하며 통화 정책에 대한 불확실성도 여전히 존재합니다.</p>
+<p>기술 분야에서는 데이터센터의 에너지 효율성과 인프라 확장을 위한 혁신, 그리고 자율주행 기술의 상업화 및 글로벌 확장 소식이 돋보였습니다.</p>
+<h3>II. 금융 시장 동향</h3>
+<p><strong>1. 글로벌 증시 및 선물 시장:</strong></p>
+<ul>
+<li><strong>급격한 상승 전환:</strong> 트럼프의 이란 관련 발언 직후, 다우 선물 (+2.10%), S&amp;P 선물 (+1.94%), 나스닥 선물 (+2.00%) 모두 큰 폭으로 상승했습니다. 미국 주요 지수(S&amp;P 500, NASDAQ, Dow Jones, IWM)는 모두 1% 이상 상승하며 개장했습니다.</li>
+<li><strong>야간 변동성:</strong> 지난 3주 연속 야간에는 선물 가격이 폭락했다가 낮에 뉴스와 소문으로 급등하는 패턴이 관찰되었습니다.</li>
+</ul>
+<p><strong>2. 원자재 및 외환:</strong></p>
+<ul>
+<li><strong>유가 하락:</strong> 중동 긴장 완화 소식에 글로벌 원유 가격이 급락했습니다. APA Corp ($APA) 및 Coterra Energy ($CTRA)는 상승했으나, ExxonMobil ($XOM)은 목표주가 하향 조정이 있었습니다. 일본 정부는 유가 선물 시장 개입을 검토 중이라고 밝혔습니다.</li>
+<li><strong>금 가격 하락:</strong> 긴장 완화 소식에 안전 자산 수요가 감소하며 금 선물 가격이 하락했고, Newmont ($NEM)의 목표주가도 하향 조정되었습니다.</li>
+<li><strong>미국 건설 지출:</strong> 월간 0.3% 감소하여 예상치(0.1% 증가)를 하회했습니다.</li>
+</ul>
+<p><strong>3. 연준 및 통화 정책:</strong></p>
+<ul>
+<li><strong>Goolsbee (굴스비) 연준 총재:</strong> 높은 유가가 경제에 미치는 영향을 파악 중이며, 금리 인상이 필요할 수 있는 상황을 예상할 수 있다고 발언했습니다.</li>
+<li><strong>Mester (미란) 연준 이사:</strong> 현재 상황을 판단하기에는 시기상조이며, 헤드라인 인플레이션 상승은 예상되나 근원 인플레이션까지 영향을 줄지는 아직 판단하기 이르다고 밝혔습니다. 다만 2차 효과와 임금 상승이 금리 인상을 필요로 할 수 있다고 언급했으나, 금리 인하 전망은 유지했습니다.</li>
+</ul>
+<p><strong>4. 주요 종목 등락:</strong></p>
+<ul>
+<li><strong>상승 동력:</strong><ul>
+<li><strong>바이오/헬스케어:</strong> APGE (+13%, 아토피 피부염 치료제 긍정적 2상), INSM (+10%, MAC 폐 질환 치료제 긍정적 3b상).</li>
+<li><strong>지정학적 완화:</strong> AAL (+5.8%), CCL (+4.9%), UAL (+4.7%), NCLH (+3.7%), JBLU (+3.0%) 등 항공 및 레저 섹터 강세.</li>
+<li><strong>기업 소식/투자:</strong> WRD (+8.7%, 자사주 매입 및 실적), ONDS (+3.7%, 건물 인수), SNPS (+2.5%, Elliott 투자), TRIP (+2.5%, 협력 계약).</li>
+<li><strong>애널리스트 상향:</strong> VG (+10.64%, 모건 스탠리 목표주가 2배 상향), MDB (+3.5%, 미즈호 상향), ADI (+4.1%, 경영 펀드 상향), ARM (+상향, HSBC 상향), NVDA (Zacks Strong Buy 유지), MSFT, MRVL (JPMorgan, Wells Fargo 상향).</li>
+<li><strong>방어주:</strong> Marsh &amp; McLennan ($MMC), Aon ($AON) 상승.</li>
+</ul>
+</li>
+<li><strong>하락 동력:</strong><ul>
+<li><strong>임상 실패:</strong> VALN (-34%, 라임병 백신 실패).</li>
+<li><strong>자본 조달:</strong> PRZO (-14%, 직접 공모 신청).</li>
+<li><strong>금리 우려/유틸리티:</strong> Vistra ($VST, -12.76%), Constellation Energy ($CEG, -10.90%), Bloom Energy ($BE, -9.94%) 등 청정에너지 및 유틸리티 섹터 하락.</li>
+<li><strong>경기 침체/반도체:</strong> Albemarle ($ALB, -4.59%, 리튬), Micron ($MU, -4.34%), Super Micro Computer ($SMCI, -4.29%) 등 일부 반도체/소재 하락.</li>
+<li><strong>규제/법적 이슈:</strong> Tesla ($TSLA, -2.76%, NHTSA FSD 조사).</li>
+<li><strong>안전 자산 약세:</strong> Newmont ($NEM, -6.77%).</li>
+<li><strong>애널리스트 하향:</strong> Carnival Corp ($CCL, BofA 목표가 하향), Alibaba ($BABA, DZ Bank 등급 하향), ExxonMobil ($XOM, Bernstein 목표가 하향).</li>
+</ul>
+</li>
+</ul>
+<h3>III. 기술 및 산업 트렌드</h3>
+<p><strong>1. AI 인프라 및 친환경 데이터센터:</strong></p>
+<ul>
+<li><strong>FuelCell Energy ($FCEL):</strong> 데이터센터 맞춤형 12.5MW 파워 블록을 출시하며, 전력망 제약 해소와 빠른 구축을 지원합니다. 생산 능력을 100MW에서 350MW로 확장하며 AI 인프라 확장에 기여할 것으로 기대됩니다.</li>
+<li><strong>NVIDIA ($NVDA):</strong> AES, Constellation Energy 등 주요 전력 회사들과 협력하여 '그리드 통합 AI 공장'을 구축합니다. 이는 AI 에너지 병목 현상을 해결하고 전력망 안정성을 높이는 이중 이점을 제공하며, 엔비디아의 베라 루빈 DSX 아키텍처를 기반으로 합니다.</li>
+</ul>
+<p><strong>2. 자율주행 및 모빌리티 기술:</strong></p>
+<ul>
+<li><strong>Mobileye ($MBLY):</strong> 주요 미국 자동차 제조업체와 대규모 DMS(운전자 모니터링 시스템) 계약을 체결했습니다. EyeQ6L 칩 기반의 AI 기술로 운전자 주의력과 도로 위험을 평가하며, Euro NCAP 2026 안전 표준을 충족하여 글로벌 수출에 중요한 역할을 할 것입니다. 이는 인텔에게도 긍정적인 소식입니다.</li>
+<li><strong>WeRide ($WRD):</strong> 1억 달러 규모의 자사주 매입 프로그램을 승인하고 글로벌 로보택시 확장에 박차를 가합니다. 현재 1,125대의 차량을 운영 중이며 2026년 말까지 2,600대 목표, 유럽 및 중동 시장에서 무인 운전 허가를 확보하며 강력한 성장세를 보여주고 있습니다.</li>
+<li><strong>Google Wing ($GOOGL):</strong> 올해 샌프란시스코 베이 지역 가정에 드론 택배 배송을 시작할 예정입니다.</li>
+</ul>
+<p><strong>3. 핵심 소재 및 공급망 강화:</strong></p>
+<ul>
+<li><strong>USA Rare Earth ($USAR):</strong> Arnold Magnetic Technologies와 판매 및 유통 계약을 체결하여 미국 내 희토류 자석 공급망을 강화합니다. 항공우주, 방위, 반도체 등 핵심 산업에 미국산 자석 공급을 확대하여 수입 의존도를 줄이고 국가 안보 목표에 부합하는 전략을 추진합니다.</li>
+</ul>
+<p><strong>4. 국방 및 AI:</strong></p>
+<ul>
+<li><strong>Palantir ($PLTR):</strong> 미국 군 복합체에 더욱 깊숙이 자리매김하며 돌파구를 형성하고 있는 것으로 분석됩니다.</li>
+</ul>
+<p><strong>5. 에너지 탐사 및 개발:</strong></p>
+<ul>
+<li>ASP Isotopes Inc. ($ASPI)는 Renergen 헬륨 프로젝트 1단계 시추 작업을 조기 완료하고 예상보다 높은 유량을 기록하며 긍정적인 소식을 전했습니다.</li>
+</ul>
+<h3>IV. 결론 및 시사점</h3>
+<p>오늘 시장은 중동 지역의 지정학적 긴장 완화 시도에 즉각적으로 긍정적인 반응을 보였으며, 이는 에너지 가격과 특정 산업 섹터에 직접적인 영향을 미쳤습니다. <strong>트럼프 전 대통령의 이란 관련 발언은 단기적인 시장 방향을 결정하는 데 강력한 촉매제 역할을 했습니다.</strong> 그러나 이란 측의 상반된 입장 발표와 Fed 인사들의 신중한 통화 정책 스탠스는 여전히 불확실성을 내포하고 있습니다. 유가 안정화와 인플레이션 압력 완화는 긍정적이지만, 금리 인상 가능성에 대한 경고음도 무시할 수 없습니다.</p>
+<p>장기적인 관점에서는 <strong>AI 인프라, 자율주행, 친환경 에너지 솔루션 분야의 혁신과 성장이 지속적으로 두드러지고 있습니다.</strong> 특히 데이터센터의 전력 수요 증가에 대응하기 위한 FuelCell Energy의 솔루션과 NVIDIA의 '그리드 통합 AI 공장' 모델은 AI 시대의 핵심 병목 현상인 에너지 문제를 해결하기 위한 중요한 진전으로 평가됩니다. 또한 Mobileye와 WeRide의 글로벌 시장 확장 노력은 자율주행 기술의 상업화가 가속화되고 있음을 보여줍니다. 핵심 소재의 국내 공급망 강화 노력은 국가 안보와 산업 경쟁력 측면에서 지속될 것으로 보입니다.</p>
+<p>투자자들은 지정학적 이벤트에 따른 단기 변동성에 주의하면서도, AI와 자율주행을 중심으로 한 혁신 기술 분야의 구조적 성장에 주목할 필요가 있습니다. Fed의 통화정책 방향과 유가의 추이 또한 면밀히 주시해야 할 핵심 변수입니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">📄 Part 5/7</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><h3>Ⅰ. 서론</h3>
+<p>2026년 3월 23일, 글로벌 금융 및 기술 시장은 지정학적 긴장, 특히 미국과 이란 간의 복잡한 역학 관계와 그에 따른 에너지 시장의 변동성에 크게 영향을 받는 하루였습니다. 시장의 전반적인 분위기는 '극도의 공포'로 나타났으며, 투자자들은 주요 뉴스 헤드라인에 민감하게 반응하고 있습니다. 본 보고서는 오늘 수집된 주요 트윗들을 종합하여 현재 시장 분위기 및 핵심 트렌드를 분석합니다.</p>
+<h3>Ⅱ. 시장 분위기 및 주목해야 할 뉴스</h3>
+<p>오늘 시장의 분위기는 <strong>지정학적 리스크의 심화와 그에 대한 상반된 정보 속에서 극심한 불확실성</strong>에 휩싸여 있습니다. 특히 <strong>미국과 이란 간의 협상 여부에 대한 극명한 입장 차이와 석유 생산자들의 대규모 공매도 포지션</strong>이 가장 주목해야 할 뉴스입니다.</p>
+<ol>
+<li>
+<p><strong>미국-이란 협상 혼선 및 지정학적 긴장:</strong></p>
+<ul>
+<li>도널드 트럼프 전 대통령은 이란과의 "생산적인" 회담 후 군사 공격을 "연기"하고 호르무즈 해협의 "공동 통제"를 발표하며 긴장 완화 가능성을 시사했습니다. 또한, 일부 미국 및 이스라엘 소식통은 미국이 이란 의회 의장 모하마드 바게르 갈리바프와 협상 중이며, 빠르면 이번 주 이슬라마바드에서 회담이 열릴 수 있다고 보도했습니다.</li>
+<li><strong>그러나 이란 측의 입장은 완전히 상반됩니다.</strong> 이란 외무부 대변인은 미국과 어떠한 대화도 없었으며, 트럼프가 "거짓말을 하거나 헛소리를 하고 있다"고 일축했습니다. 우방국들을 통해 미국이 전쟁 종식을 위한 대화를 요청해왔지만 이란은 응답하지 않았으며, 호르무즈 해협에 대한 입장과 전쟁 종식 조건은 변함이 없다고 강조했습니다. 또한, 이스라엘은 베이루트에서 이란 혁명수비대 쿠드스군 요원을 공격하고 테헤란에서 대규모 공습을 단행했다고 밝혀 긴장감이 최고조에 달했습니다.</li>
+<li>이러한 <strong>상반된 보도들은 시장의 혼란과 불확실성을 극대화</strong>하고 있으며, 투자자들은 이란을 둘러싼 상황이 급변할 수 있다는 우려 속에 극도의 불안감을 느끼고 있습니다. 쿠웨이트 미군 기지에서 폭발이 발생했다는 소식도 이러한 불안감을 가중시켰습니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>에너지 시장의 복잡한 신호:</strong></p>
+<ul>
+<li>WTI 원유의 급격한 반전을 반영하여 Diamondback Energy($FANG)의 목표 주가가 하향 조정되는 등 유가 변동성이 확대되고 있습니다. 주유소 소매 가격이 심리적 저항선에 가까워지면서 저소득 가구에 미치는 영향이 강조되고 있습니다.</li>
+<li>셰브론 CEO는 유가 시장이 "부족한 정보에 휘둘리고 있다"고 지적하며, 호르무즈 해협의 물리적 충격이 종이 시장에 반영되지 않고 있다고 언급했습니다.</li>
+<li><strong>가장 주목할 만한 점은 석유 생산업체들의 움직임입니다.</strong> 미국-이란 회담 발표 직전, 석유 생산업체들이 <strong>20년 만에 최대 규모인 1,926억 4,700만 달러 규모의 오일 숏 포지션</strong>을 취했습니다. 이는 실물 시장에 가장 가까운 플레이어들이 현재 유가가 헤지할 만큼 충분히 높고, 위험을 방어할 만큼 충분히 높다고 판단하여 강세장에서 매도하고 있음을 시사합니다. 이러한 대규모 헤징은 전쟁 헤드라인을 쫓는 개인 투자자들의 강세 심리와는 <strong>상반되는 매우 중요한 신호</strong>로, 향후 유가에 대한 신중한 접근이 필요함을 경고하고 있습니다.</li>
+<li>미국 에너지부 장관은 전략비축유 추가 방출 가능성은 "희박하다"고 밝혔으나, 정유 효율성 제고 등 유가 인하를 위한 추가 수단을 검토 중이라고 언급했습니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>시장 심리 지표의 '극도의 공포':</strong></p>
+<ul>
+<li>암호화폐 공포-탐욕 지수는 8/100, 일반 시장의 공포-탐욕 지수는 19/100으로 모두 <strong>'극도의 공포(Extreme Fear)'</strong> 상태를 나타냈습니다. 이는 전반적인 투자 심리가 매우 위축되어 있음을 보여줍니다.</li>
+<li>특히, 금 가격이 사상 최고치에서 20% 이상 하락하며 <strong>약세장(Bear Market)에 진입</strong>했다는 소식은 지정학적 긴장 고조 시 안전자산 선호 경향과는 다른 움직임을 보여주며 시장에 추가적인 의문을 던지고 있습니다.</li>
+</ul>
+</li>
+</ol>
+<h3>Ⅲ. 상세 분석</h3>
+<p><strong>1. 지정학적 리스크와 에너지 시장</strong></p>
+<ul>
+<li><strong>미-이란 긴장 고조 및 협상 혼선:</strong> 트럼프의 이란 군사 공격 연기 및 호르무즈 해협 공동 통제 발언은 일시적인 안도감을 주었으나, 이스라엘의 이란 관련 공격과 이란 측의 강력한 협상 부인으로 인해 평화적인 해결에 대한 기대는 다시 약화되었습니다. 크렘린궁은 상황이 평화 국면으로 돌아가기를 희망한다고 밝혔으나, 이란 안보위원회 대변인은 무력만이 통할 것이라고 언급하며 긴장의 골이 깊음을 시사했습니다.</li>
+<li><strong>석유 시장 변동성:</strong> WTI 원유의 급격한 반전과 함께 석유 생산자들의 대규모 숏 포지션은 유가 시장의 하방 리스크를 경고합니다. 유조선 운송 차질로 인한 원유 공급 차질이 하루 1,200만 배럴에 육박했다는 분석과 함께, 이러한 이중적인 상황이 격렬한 양방향 움직임을 유발할 것으로 예상됩니다. 프랑스 정부는 정유사에 생산량 증대 가능성을 문의하는 등 에너지 공급 불안에 대한 우려가 확산되고 있습니다.</li>
+<li><strong>전력망 및 담수화 시설 취약성:</strong> 이란 전쟁이 전력망 파괴로 승리할 수 없을 것이며, 중동에서 가장 취약한 대상은 담수화 시설이라는 TTN 리서치 경고는 장기적인 관점에서 에너지 안보뿐만 아니라 생활 필수 인프라에 대한 잠재적 위협을 시사합니다.</li>
+</ul>
+<p><strong>2. 주요 증시 및 투자 심리</strong></p>
+<ul>
+<li><strong>시장 심리 지표:</strong> '극도의 공포' 상태는 투자자들의 높은 위험 회피 성향을 반영합니다. SPX가 6월 만기일까지 매 세션 175bp씩 움직일 것으로 예상된다는 점은 시장의 높은 변동성 전망을 뒷받침합니다.</li>
+<li><strong>주요 기업 목표 주가 업데이트:</strong> Piper Sandler는 Alphabet($GOOGL) 목표 주가를 $190에서 $215로, Evercore ISI는 Amazon($AMZN)을 $220에서 $240로, Jefferies는 Apple($AAPL)을 $230에서 $245로 상향 조정했습니다. Stifel 또한 GXO Logistics($GXO)의 목표 주가를 $64에서 $72로 상향했습니다. 이는 지정학적 리스크에도 불구하고 주요 기술 및 소비재 기업들에 대한 장기적인 긍정적 전망이 유지되고 있음을 보여줍니다. 반면, WTI 원유 반전을 반영하여 Diamondback Energy($FANG)는 목표 주가가 하향 조정되었습니다.</li>
+<li><strong>유럽 경제 및 정치 불확실성:</strong> 유로존 소비자 신뢰지수가 예상보다 크게 하락(-16.3)하며 경제 전망에 대한 비관적인 시각을 반영합니다. 영국은 금리 인상 폭 전망치를 하향 조정(4회 -&gt; 2회)했으며, 이탈리아의 사법 개혁 국민투표 부결 가능성과 독일 극우 정당 AfD의 약진은 유럽 내 정치적 불안정성과 경제적 불확실성을 가중시키는 요인입니다.</li>
+</ul>
+<p><strong>3. 기술 및 기업 동향</strong></p>
+<ul>
+<li><strong>AI 경쟁 심화:</strong> OpenAI가 AI 경쟁 속에서 기업 계약 확보를 위해 사모펀드에 17.5% 수익 보장이라는 공격적인 조건을 제시한 것은 AI 산업의 치열한 경쟁 상황을 반영합니다.</li>
+<li><strong>M&amp;A 및 산업 확장:</strong> JP모건이 EA 인수 자금 마련을 위해 80억 달러 규모의 정크본드 발행을 시작하고, 다논이 영양 스타트업 휼을 12억 달러에 인수 합의하는 등 M&amp;A 활동이 활발하게 진행되고 있습니다. 또한, 후지쓰가 유럽 방위 사업 부문 직원을 2030년대까지 두 배 증원할 계획은 방위 산업의 성장을 시사합니다.</li>
+</ul>
+<p><strong>4. 기타 주목할 만한 소식</strong></p>
+<ul>
+<li><strong>미국 국내 정치 및 규제:</strong> 대법원이 선거일 이후 도착 연방 투표용지 개표 여부를 결정하고, 캘리포니아에서 호스피스 사기 혐의가 조사받는 등 미국 국내 정치 및 법률 이슈도 이어지고 있습니다. SEC 집행국장이 트럼프 관련 사안을 두고 기관 수뇌부와 충돌 후 사임했다는 소식도 정치적 민감성을 보여줍니다.</li>
+<li><strong>헬륨 공급 부족 우려:</strong> ASP Isotopes의 헬륨 프로젝트 시추가 예정보다 4개월 앞당겨 완료된 것은 글로벌 헬륨 공급 부족 우려를 반영합니다.</li>
+</ul>
+<h3>Ⅳ. 결론 및 향후 전망</h3>
+<p>오늘 수집된 트윗들은 현재 금융 및 기술 시장이 <strong>전례 없는 지정학적 리스크와 그에 따른 불확실성 속에서 극도의 경계심</strong>을 유지하고 있음을 분명히 보여줍니다. 특히, 미국과 이란 간의 대화 시도에 대한 <strong>상반된 공식 입장은 시장의 혼란을 가중시키는 주요 원인</strong>이며, 이로 인해 유가를 비롯한 원자재 시장은 단기적으로 높은 변동성을 보일 가능성이 큽니다.</p>
+<p>그러나 석유 생산자들의 대규모 숏 포지션은 전쟁 리스크로 인한 유가 급등세가 장기적이지 않을 수 있다는 <strong>역설적인 신호</strong>를 던지고 있어, 투자자들은 헤드라인 뉴스만을 쫓기보다는 실물 시장의 움직임을 면밀히 분석해야 할 필요가 있습니다.</p>
+<p>기술 섹터의 일부 대형주들은 견고한 펀더멘털을 바탕으로 목표 주가가 상향 조정되는 등 긍정적인 평가를 받고 있지만, 전반적인 시장 심리는 '극도의 공포'에 머물러 있습니다. 유럽의 정치적, 경제적 불확실성 또한 글로벌 시장에 부담으로 작용할 것입니다.</p>
+<p>투자자들은 당분간 <strong>지정학적 뉴스의 흐름과 에너지 시장의 미묘한 신호</strong>에 촉각을 곤두세우고, 높은 변동성에 대비한 보수적인 투자 전략을 유지하는 것이 중요해 보입니다. 다음 주 예정된 PMI, 생산성, 소비자 심리지수 등 주요 경제 지표 발표 또한 시장의 방향성에 영향을 미칠 중요한 변수가 될 것입니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">📄 Part 6/7</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><p>본 보고서는 2026년 3월 24일 주요 트윗들(Part 6/7)을 종합하여 작성되었습니다. 현재 금융 시장은 중동 지정학적 리스크의 급변하는 상황과 기술 분야의 혁신 및 경쟁 심화가 복합적으로 작용하여 높은 불확실성과 변동성을 보이고 있습니다.</p>
+<h3><strong>요약</strong></h3>
+<p>오늘 시장의 분위기는 <strong>중동 지역의 지정학적 긴장 고조와 이에 대한 상충되는 정보 흐름</strong>에 의해 지배되었습니다. 미국-이란 간 협상 가능성에 대한 보도와 즉각적인 부인, 이란의 군사 행동 및 호르무즈 해협 봉쇄 위협 등 예측 불가능한 뉴스들이 시장 변동성을 극대화했습니다. 기술 분야에서는 <strong>AI 경쟁 심화 (특히 중국의 약진)</strong>와 <strong>AI의 막대한 에너지 수요</strong>가 부각되었으며, 애플은 아이폰 에어의 높은 인기 예상과 지도 앱 광고 도입으로 서비스 매출 확대를 모색하고 있습니다. 전체적으로, <strong>중동발 에너지 위기 가능성</strong>과 <strong>기술 패권 경쟁</strong>이 주요 관전 포인트입니다.</p>
+<h3><strong>1. 금융 시장 동향 및 시장 분위기</strong></h3>
+<ul>
+<li><strong>극심한 변동성:</strong> 미국이 이란과의 "주요 합의점 도달" 및 "군사 공격 5일 연기" 소식을 전하며 S&amp;P 500 지수가 급등했지만, 이란 의회 의장의 즉각적인 "미국과 협상은 없었다"는 부인으로 상승폭이 1.3%로 축소되는 등 시장은 혼란스러운 모습을 보였습니다. 이란 측은 이러한 소식이 "유가 시장 조작에 이용되는 가짜 뉴스"라고 주장하기도 했습니다.</li>
+<li><strong>매크로 경제 지표 우려:</strong> 골드만삭스는 미국 경기 침체 확률을 30%로 상향 조정했으며, 애틀랜타 연준 GDPNow 모델은 1분기 GDP 성장률 전망치를 2.3%에서 2.0%로 하향 조정하며 경제 성장 둔화에 대한 우려를 반영했습니다.</li>
+<li><strong>옵션 시장 활동:</strong> SPX 딜러 프리미엄이 약 3,270.5억 달러, 0DTE 프리미엄이 약 44억 달러를 기록하며 활발한 옵션 거래 활동과 높은 장중 민감도를 나타냈습니다. 딜러들의 델타 헤징 규모(-615.2억 달러)는 가격 변동에 대한 헤지를 위해 기초 자산을 매도해야 할 수 있음을 시사하며, 이는 시장 유동성에 상당한 영향을 미칠 수 있습니다.</li>
+<li><strong>인도 시장 동향:</strong> 국내 기관 투자자(DII)가 순매수(12,033.97억 루피)를 기록한 반면, 외국인 기관 투자자(FII/FPI)는 순매도(-10,414.23억 루피)를 보였습니다.</li>
+</ul>
+<h3><strong>2. 중동발 지정학적 리스크 (최대 주목 뉴스)</strong></h3>
+<p><strong>현재 시장을 움직이는 가장 큰 동인은 미국-이란-이스라엘 간의 복잡하고 예측 불가능한 관계입니다.</strong></p>
+<ul>
+<li><strong>상반되는 협상 보도:</strong> 도널드 트럼프 미국 대통령이 이란과의 "매우 좋은 논의"와 "더 포괄적인 합의" 가능성을 언급하며 이란이 "진지하다"고 밝혔으나, 이란 의회 의장 갈리바프는 즉각적으로 미국과의 협상을 부인하며 "가짜 뉴스"라고 일축했습니다. 이란 고위 관계자는 "트럼프는 협상에 대한 조건이나 기한을 정할 권한이 없다"고 강조했습니다.</li>
+<li><strong>군사적 충돌 및 위협:</strong><ul>
+<li>트럼프의 이란 발전소 및 에너지 기반 시설에 대한 군사 공격 5일 연기 지시 보도가 있었으나, 이란 혁명수비대는 이스라엘 및 역내 미군 기지에 대한 새로운 공격을 감행했다고 주장했습니다.</li>
+<li>이란은 해안 공격 시 걸프 지역의 완전 폐쇄와 기뢰 매설 위협을 경고했습니다. 이라크 모술에서 발사된 로켓이 시리아 북동부 미군 기지를 향하고, 이라크 에르빌 주미 영사관 상공에서 드론이 격추되는 등 역내 긴장이 고조되고 있습니다.</li>
+<li>미국 국방부가 이란에 공수부대 파병을 검토 중이라는 뉴욕타임스 보도도 긴장감을 더합니다.</li>
+</ul>
+</li>
+<li><strong>이스라엘의 입장:</strong> 이스라엘 채널 12는 이란이 핵 프로그램과 관련하여 "매우 중요하고 진지한 양보를 할 준비가 되어 있다"고 보도했으나, 동시에 "현 단계에서 합의에 도달할 수 있을지 판단하기에는 너무 이르다"고 밝혔습니다. 또한, 이스라엘 관리는 워싱턴이 이란과의 전쟁 종료 시점을 <strong>4월 9일</strong>로 설정했다고 알 하닷 뉴스를 통해 보도되었습니다. 이는 긴장의 정점 혹은 해결의 분기점이 될 수 있습니다.</li>
+<li><strong>에너지 시장에 미치는 영향:</strong> 셰브론 CEO는 "미국-이란 전쟁이 러시아-우크라이나 전쟁보다 국제 유가 시장에 더 큰 타격을 줬다"고 언급하며, 호르무즈 해협의 중요성과 중동 리스크가 유가에 미치는 심각한 영향을 강조했습니다. 푸틴 러시아 대통령은 에너지 대기업들에게 이란 전쟁 특수로 인한 이익을 은행 대출 상환에 활용하도록 지시했습니다.</li>
+</ul>
+<h3><strong>3. 에너지 시장 트렌드</strong></h3>
+<ul>
+<li><strong>글로벌 에너지 위기 우려:</strong> 중국은 미국-이스라엘-이란 전쟁 장기화로 인한 휘발유 및 경유 부족 우려에 대비하여 소매 연료 가격을 인상했습니다. 국제에너지기구(IEA)는 중동 전쟁 장기화 시 1970년대 오일 쇼크보다 더 심각한 에너지 충격이 초래될 수 있다고 경고했습니다.</li>
+<li><strong>전환 에너지 부각:</strong> OpenAI가 핵융합 스타트업 Helion Energy로부터 핵융합 에너지를 구매하기 위한 막바지 협상 중이라는 소식은 AI 산업의 막대한 에너지 수요와 차세대 에너지원에 대한 관심을 보여줍니다. 또한, 선도적인 가스 냉각 원자로 개발사 X-energy의 IPO 추진은 핵연료 공급망 발전과 원자력 에너지에 대한 투자가 확대되고 있음을 시사합니다.</li>
+<li><strong>미국의 EU 에너지 정책 압박:</strong> 미국은 유럽연합에 친환경 규제 완화 없이는 심각한 에너지 위기가 닥칠 것이라고 경고하며 에너지 안보의 중요성을 강조했습니다.</li>
+</ul>
+<h3><strong>4. 기술 트렌드 (AI 및 애플)</strong></h3>
+<ul>
+<li><strong>AI 패권 경쟁 심화:</strong><ul>
+<li><strong>중국의 약진:</strong> 미국 자문위원회는 중국의 오픈소스 AI 생태계가 "자기 강화적인 경쟁 우위"를 만들고 있으며, 미국의 반도체 제재에도 불구하고 알리바바, 문샷, 미니맥스 같은 중국 AI 모델들이 낮은 비용을 바탕으로 세계적으로 인기를 얻으며 미국 지배력을 잠식하고 있다고 경고했습니다.</li>
+<li><strong>AI의 전략적 중요성:</strong> ECB는 AI가 EU 자본시장 연합을 완성해야 하는 또 다른 이유라고 언급하며 AI가 경제 전반에 미치는 영향력을 강조했습니다.</li>
+<li><strong>AI의 군사적 활용:</strong> 팔란티어(PLTR)는 미 국방부의 '메이븐' 전장 시스템 사업화 추진으로 "황금 경로"에 진입하며 AI가 국방 분야에서 핵심적인 역할을 하고 있음을 보여주었습니다.</li>
+</ul>
+</li>
+<li><strong>OpenAI의 기능 확장 및 에너지 전략:</strong> ChatGPT에 파일 저장 기능이 도입되어 사용자 편의성이 크게 향상될 예정이며, 이는 AI 모델의 활용 범위를 넓힐 것입니다. 핵융합 에너지 구매 협상은 AI 인프라 구축의 핵심인 전력 공급 문제에 대한 샘 알트만 CEO의 선제적인 대응으로 풀이됩니다.</li>
+<li><strong>애플(AAPL)의 사업 확장:</strong><ul>
+<li><strong>신제품 기대감:</strong> 아이폰 에어가 아이폰 16 플러스보다 약 두 배 더 인기 있을 것으로 예상되며, 신제품에 대한 시장의 높은 기대감을 반영했습니다.</li>
+<li><strong>서비스 매출 확대:</strong> 애플은 올여름부터 Apple 지도에 검색 광고를 판매하기 시작할 예정입니다. 이는 구글 지도와 유사하게 검색 결과 상단 노출을 위한 광고 유치 방식으로, 서비스 부문 매출을 더욱 강화할 전략입니다.</li>
+<li><strong>WWDC26 개최:</strong> 6월 8일부터 12일까지 WWDC26을 개최하며, 특히 AI 기술 발전과 새로운 개발자 도구에 초점을 맞출 것이라고 발표했습니다. 이는 애플이 AI 분야에서의 경쟁력 강화를 위한 움직임을 가속화하고 있음을 시사합니다.</li>
+</ul>
+</li>
+</ul>
+<h3><strong>5. 기타 주요 소식</strong></h3>
+<ul>
+<li><strong>국내 정치 및 사회:</strong> 엡스타인 사건 은폐 의혹이 심화되고 있으며, 대법원은 늦게 도착한 투표 용지 허용 주법에 대해 회의적인 입장을 보였습니다. 트럼프는 SAVE 법안 없이는 국토안보부 자금 지원을 하지 않겠다고 발언했습니다.</li>
+<li><strong>항공 사고:</strong> 라과디아 공항에서 에어캐나다 제트기가 소방차와 충돌하여 조종사 2명이 사망하는 사고가 발생했습니다.</li>
+<li><strong>자연재해:</strong> 하와이 제도에 기록적인 폭우가 덮쳐 수백 채의 가옥이 피해를 입고 230명 이상이 구조되었습니다.</li>
+</ul>
+<h3><strong>결론 및 시사점</strong></h3>
+<p>현재 시장은 중동발 지정학적 리스크의 급변하는 상황에 의해 지극히 높은 변동성과 불확실성에 직면해 있습니다. 미국과 이란 간의 상충되는 발언은 투자자들에게 예측 불가능한 환경을 조성하며, 이는 유가 및 주식 시장에 지속적으로 큰 영향을 미칠 것입니다. 특히 <strong>4월 9일로 제시된 이란과의 전쟁 종료 시한</strong>은 향후 시장의 향방을 가를 중요한 분기점이 될 수 있습니다.</p>
+<p>기술 분야에서는 <strong>AI 혁명이 가속화</strong>되고 있으나, 그 이면에는 <strong>에너지 수요 증가</strong>라는 도전 과제와 <strong>미국-중국 간의 기술 패권 경쟁</strong>이라는 지정학적 리스크가 공존합니다. 애플의 AI 및 서비스 매출 확대 전략은 이러한 변화 속에서 기업들이 어떻게 성장 동력을 확보하려 하는지를 보여줍니다. 투자자들은 중동 정세 변화에 대한 실시간 모니터링과 함께, AI, 에너지 전환 등 핵심 기술 트렌드의 장기적 영향을 면밀히 분석하고 대비해야 할 시점입니다.</p></div></details>
+<details class="accordion-section"><summary class="accordion-title"><span class="accordion-title-text">📄 Part 7/7</span><span class="accordion-arrow"></span></summary><div class="accordion-body md-content"><h3>서론</h3>
+<h3>시장 분위기 및 주목할 뉴스</h3>
+<p>오늘의 시장 분위기를 결정하는 두 가지 핵심적인 요소는 <strong>중동 지정학적 리스크의 최고조와 그에 따른 유가 급락의 역설</strong>, 그리고 <strong>AI 기술 혁신의 압도적인 파급력과 산업 전반의 변화 예고</strong>입니다.</p>
+<ol>
+<li>
+<p><strong>지정학적 리스크와 유가 급락의 역설:</strong></p>
+<ul>
+<li><strong>이란-미국-이스라엘 갈등의 고조:</strong> 미국 국방부가 이란에 공수부대 파병을 검토하고 미 해병대가 중동에 추가 파병될 예정이라는 소식은 긴장감이 최고조에 달했음을 보여줍니다. 이란 혁명수비대(IRGC) 대변인은 필요에 따라 안보를 확보할 것이라 밝혔고, 이란 외무 차관은 역내 안정 논의를 했음에도 불구하고 이란 측에서는 "모든 제재가 해제될 때까지 전쟁을 지속할 것"이라는 강경한 입장을 표명했습니다. 특히 호르무즈 해협에 이란 기뢰가 12개 가량 흩뿌려져 있다는 CBS 보도는 잠재적인 에너지 공급망 불안정성을 시사합니다. 네타냐후 이스라엘 총리는 트럼프 대통령과의 통화에서 이란 최고 지도자 암살을 공동 작전으로 추진하자고 제안했다는 루머까지 돌았습니다.</li>
+<li><strong>유가의 급격한 하락:</strong> 이처럼 지정학적 긴장이 최고조에 달했음에도 불구하고, NYMEX WTI 원유 5월물은 배럴당 88.13달러로 10.28% 하락했고, 브렌트유 선물 또한 배럴당 99.94달러로 10.92% 급락하며 100달러 선이 무너졌습니다. 이는 극도의 긴장 상황에도 불구하고, 이스라엘 채널 12에서 보도된 '이란의 미사일 프로젝트 5년 동결 합의' 소식이나 미국 내무장관의 '이란과의 소통' 발언 등 <strong>평화 협상에 대한 미약한 기대감이 시장에 반영되었거나, 혹은 고유가 장기화가 세계 경기 침체로 이어질 것이라는 우려가 더 크게 작용</strong>했음을 보여줍니다. 이 상반된 정보 속에서 시장은 극심한 변동성을 겪고 있으며, 투자자들은 중동 사태의 실제 전개 방향과 유가 흐름에 촉각을 곤두세워야 할 시점입니다. 골드만삭스가 미국 경기 침체 확률을 30%로 상향 조정한 점도 이러한 불안감을 가중시키고 있습니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>AI 혁신의 가속화와 산업 전반의 변화 예고:</strong></p>
+<ul>
+<li><strong>젠슨 황 NVIDIA CEO의 비전:</strong> 렉스 프리드먼 팟캐스트에서 젠슨 황 CEO의 발언은 AI가 가져올 미래에 대한 그의 깊은 통찰을 보여주었습니다. 그는 공식적인 승계 계획 대신 "끊임없이 지식을 전달"하여 조직 전체에 통찰력을 확산시킨다고 밝혔습니다. 특히 "생물학적 기계 이해가 5년 내에 다가올 것"이라는 대담한 예측과 함께, AI가 코딩 가능한 사람의 수를 "3천만 명에서 아마 10억 명으로 늘렸다"고 강조했습니다. "미래의 모든 목수는 코더가 될 것이며, AI를 가진 목수는 건축가가 될 것이다"라는 발언은 AI가 노동자들을 단순 실행에서 설계, 자문, 창의적 작업으로 끌어올려 노동의 가치를 높일 것이라는 긍정적 전망을 제시합니다. 동시에 "기술은 많은 업무를 대체하고 제거할 것"이라며 "만약 당신의 직업이 단순히 업무라면 매우 큰 영향을 받게 될 것"이라고 경고, AI를 활용하여 업무를 자동화하는 방법을 배워야 한다고 역설했습니다. 이는 모든 산업 분야에서 AI 활용 능력이 핵심 역량이 될 것임을 시사합니다.</li>
+<li><strong>주요 기업들의 AI 투자 및 인프라 확장:</strong> OpenAI는 기업 고객 유치 및 파트너 확보를 위해 사모펀드에 최소 17.5% 수익률 보장과 신모델 조기 접근 권한을 제공하며 공격적인 확장을 시도하고 있습니다. META는 AI 에이전트 개발을 가속화하기 위해 AI 스타트업 드리머의 창업자 및 팀을 영입했습니다. Tesla와 SpaceX는 오스틴에 대규모 '테라팹' 칩 공장 건설 계획을 발표하며 자체 반도체 역량 강화에 나섰고, 바클레이즈는 이로 인해 테슬라의 자본 지출 목표치가 훨씬 높아질 수 있다고 전망했습니다. Applied Optoelectronics (AAOI)는 주요 하이퍼스케일 고객으로부터 5,300만 달러 이상의 800G 싱글 모드 데이터 센터 트랜시버 신규 주문을 확보하는 등, AI 시대의 핵심 인프라 수요가 폭발적으로 증가하고 있음을 보여줍니다. 이러한 움직임들은 AI 기술 경쟁이 심화되고 있으며, 관련 인프라 및 서비스 시장의 성장이 더욱 가속화될 것임을 나타냅니다.</li>
+</ul>
+</li>
+</ol>
+<h3>종합 금융 및 기술 트렌드 분석</h3>
+<p><strong>1. 지정학적 리스크와 에너지 시장의 불확실성:</strong></p>
+<ul>
+<li><strong>중동 긴장 고조:</strong> 이란-이스라엘-미국 간의 군사적 긴장은 최고 수준에 달했습니다. 미군의 추가 파병 검토, 호르무즈 해협의 기뢰 설치 보도, 이스라엘의 이란 미사일 요격 등은 전면전 가능성을 배제할 수 없는 상황임을 보여줍니다.</li>
+<li><strong>유가 변동성 확대:</strong> 이러한 긴장 속에서 WTI와 브렌트유가 10% 이상 급락한 것은 역설적입니다. 이는 단기적인 평화 협상 기대감, 글로벌 경기 침체 우려로 인한 수요 감소 전망, 또는 시장 참여자들의 과도한 포지션 청산 등이 복합적으로 작용한 결과로 보입니다. 앞으로 유가는 중동 정세 변화와 글로벌 경기 전망에 따라 극심한 변동성을 보일 것으로 예상됩니다.</li>
+<li><strong>에너지 안보 강화:</strong> 미국은 알래스카 LNG 프로젝트를 최우선 순위로 강조하며 에너지 안보 강화에 나서고 있으며, 트럼프의 'Pax Silica' 펀드 구상과 미국-EU의 핵심 광물 협상 임박 소식은 글로벌 공급망의 지정학적 리스크를 줄이려는 노력이 심화되고 있음을 보여줍니다.</li>
+</ul>
+<p><strong>2. AI 및 기술 산업의 패러다임 전환:</strong></p>
+<ul>
+<li><strong>AI의 인력 시장 재편:</strong> 젠슨 황 CEO의 발언처럼 AI는 단순한 도구를 넘어 인력 시장과 직업의 본질을 변화시킬 것입니다. AI 활용 능력이 모든 직무에서 필수화되고, 창의적이고 설계적인 역할의 가치가 더욱 높아질 것입니다. 동시에 단순 반복 업무는 AI로 대체될 가능성이 커, 노동자들의 재교육 및 역할 전환이 시급한 과제로 부상할 것입니다.</li>
+<li><strong>AI 인프라 및 서비스 경쟁 심화:</strong> OpenAI, Meta, Tesla 등 주요 기술 기업들은 AI 에이전트 개발, 칩 생산 시설 투자, 데이터 센터 확장 등을 통해 AI 리더십 확보에 박차를 가하고 있습니다. 이는 AI 관련 하드웨어(반도체, 서버, 네트워크 장비) 및 소프트웨어(모델, 서비스 플랫폼) 시장의 고성장을 견인할 것입니다.</li>
+<li><strong>우주 산업 및 네트워크 기술 발전:</strong> 아마존 레오의 위성 생산 및 발사 가속화, Kratos의 5G NTN 시스템 개발은 차세대 통신 인프라 및 우주 경제 성장을 예고합니다. FCC의 해외 제조 소비자용 라우터 수입 금지는 자국 중심의 기술 공급망 재편 및 보안 강화 움직임으로 해석될 수 있습니다.</li>
+</ul>
+<p><strong>3. 금융 시장 동향 및 기업별 이슈:</strong></p>
+<ul>
+<li><strong>거시 경제 불확실성:</strong> 골드만삭스의 경기 침체 확률 상향 조정과 고유가 장기화 우려는 전반적인 거시 경제의 불확실성을 높이고 있습니다. 2026년 금리 변화 예상치에 따르면 미국은 금리 인하 기대감이 낮은 반면 유럽과 영국은 상대적으로 높게 나타나 통화 정책의 차별화가 예상됩니다.</li>
+<li><strong>주식 시장의 혼조세:</strong> S&amp;P 500의 스팟-변동성 베타가 -0.34로 변동성 과소 반응을 시사하는 가운데, 많은 소비재, 헬스케어, 산업재 기업들이 52주 신저가를 기록하며 시장 전반의 압박을 보여주었습니다(예: Abbott, Domino's Pizza, Super Micro). 반면 Clear Secure, Akamai, ConocoPhillips 등 일부 기술 및 에너지 관련 기업은 52주 신고가를 경신하며 차별화된 흐름을 보였습니다. MOC(Market on Close) 불균형은 주요 지수에서 매도 우위를 나타냈습니다.</li>
+<li><strong>주요 기업 소식:</strong> Toyota의 켄터키와 인디애나 공장에 10억 달러 추가 투자 계획은 미국 제조업에 대한 지속적인 투자를 보여줍니다. 에스티 로더와 푸이그의 400억 달러 규모 합병 논의는 뷰티 산업 내 대형 M&amp;A를 통한 경쟁력 강화 추세를 반영합니다. Spotify의 팟캐스트 부서 15명 감원은 기술 기업들의 지속적인 비용 효율화 및 구조조정 노력을 시사합니다. Lululemon의 내부자 매수(Bergh Charles V 이사의 100만 달러 상당 매수)는 해당 기업에 대한 경영진의 긍정적인 전망을 나타냅니다. 아폴로 사모 신용 펀드의 인출 제한은 사모 시장의 유동성 위험에 대한 경고로 해석될 수 있습니다.</li>
+</ul>
+<h3>결론</h3>
+<p>오늘의 시장은 중동발 지정학적 긴장과 AI 중심의 기술 혁신이라는 두 개의 거대한 축을 중심으로 움직이고 있습니다. 지정학적 리스크는 단기적인 시장 변동성을 확대시키지만, 유가 급락은 예상치 못한 완화 요인으로 작용하며 시장의 복잡성을 더했습니다. 동시에 AI는 단순한 기술 트렌드를 넘어 산업 구조와 노동 시장의 근본적인 변화를 예고하며 새로운 투자 기회와 도전을 제시하고 있습니다.</p>
+<p>투자자들은 중동 정세의 전개 상황과 유가 흐름을 예의주시하면서도, AI 기술의 실제적인 산업 적용 범위와 경제적 파급 효과를 면밀히 분석해야 할 것입니다. 특히 AI 인프라 관련 기업, AI 기반 서비스 제공 기업, 그리고 AI를 적극적으로 도입하여 경쟁력을 강화하는 전통 산업 분야에 대한 심도 깊은 관심이 요구됩니다. 동시다발적으로 나타나는 경기 침체 신호와 기업 실적 부진 또한 간과할 수 없는 요인이므로, 위험 관리와 함께 장기적인 관점에서 혁신 주도 기업을 선별하는 전략이 중요해 보입니다.</p></div></details>
+  </div>
+
+  <!-- Scroll to top button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="맨 위로">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+</div>
+
+  </main>
+  <footer class="border-t border-gray-200 mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between">
+    <span class="text-xs text-gray-400">&copy; 2026 도핑랩</span>
+    <div class="flex items-center gap-4">
+      <a href="https://x.com/toppingtest" target="_blank" class="text-gray-400 hover:text-gray-600 transition">
+        <iconify-icon icon="solar:letter-linear" width="18"></iconify-icon>
+      </a>
+      <a href="https://discord.gg/your-invite" target="_blank" class="text-gray-400 hover:text-gray-600 transition">
+        <iconify-icon icon="solar:chat-round-dots-linear" width="18"></iconify-icon>
+      </a>
+    </div>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+<script>
+// Tab switching with animated underline
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active from all
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    // Hide all panels
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    // Activate clicked tab
+    btn.classList.add('active');
+    // Show panel with animation
+    const panel = document.getElementById('tab-' + btn.dataset.tab);
+    panel.classList.remove('hidden');
+    // Re-trigger animation
+    panel.style.animation = 'none';
+    panel.offsetHeight; // force reflow
+    panel.style.animation = '';
+  });
+});
+
+const swiperBase = { speed: 400, grabCursor: true, touchRatio: 1.5, threshold: 5 };
+
+
+new Swiper('.swiper-slide-v1', { ...swiperBase, slidesPerView: 1, spaceBetween: 16, navigation: { nextEl: '.swiper-next-v1', prevEl: '.swiper-prev-v1' }, pagination: { el: '.swiper-pagination-v1', clickable: true } });
+
+new Swiper('.swiper-slide-v2', { ...swiperBase, slidesPerView: 1, spaceBetween: 16, navigation: { nextEl: '.swiper-next-v2', prevEl: '.swiper-prev-v2' }, pagination: { el: '.swiper-pagination-v2', clickable: true } });
+
+
+
+new Swiper('.swiper-shorts', { ...swiperBase, slidesPerView: 3, spaceBetween: 10, navigation: { nextEl: '.swiper-next-shorts', prevEl: '.swiper-prev-shorts' }, pagination: { el: '.swiper-pagination-shorts', clickable: true }, breakpoints: { 0: { slidesPerView: 1 }, 480: { slidesPerView: 2 }, 640: { slidesPerView: 3 } } });
+
+
+// Scroll to top button
+(function() {
+  const btn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// Print section selection
+(function() {
+  const toggleBtn = document.getElementById('printToggleBtn');
+  const modal = document.getElementById('printModal');
+  const execBtn = document.getElementById('printExecBtn');
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    modal.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!modal.contains(e.target) && e.target !== toggleBtn) {
+      modal.classList.add('hidden');
+    }
+  });
+
+  // 전체문서(전체)와 (선택)은 상호배타
+  const fullAllCb = modal.querySelector('input[value="fullanalysis-all"]');
+  const fullCurCb = modal.querySelector('input[value="fullanalysis-current"]');
+  fullAllCb.addEventListener('change', () => { if (fullAllCb.checked) fullCurCb.checked = false; });
+  fullCurCb.addEventListener('change', () => { if (fullCurCb.checked) fullAllCb.checked = false; });
+
+  execBtn.addEventListener('click', () => {
+    const checks = modal.querySelectorAll('input[type="checkbox"]');
+    const selected = Array.from(checks).filter(c => c.checked).map(c => c.value);
+
+    const showBriefing = selected.includes('briefing');
+    const showDeep = selected.includes('deepresearch');
+    const showFullAll = selected.includes('fullanalysis-all');
+    const showFullCur = selected.includes('fullanalysis-current');
+    const showFull = showFullAll || showFullCur;
+
+    // Show/hide sections
+    ['briefing', 'deepresearch', 'fullanalysis'].forEach(tab => {
+      const el = document.getElementById('tab-' + tab);
+      if (!el) return;
+      const show = (tab === 'briefing' && showBriefing) ||
+                   (tab === 'deepresearch' && showDeep) ||
+                   (tab === 'fullanalysis' && showFull);
+      if (show) {
+        el.classList.remove('hidden');
+        el.classList.add('print-section-visible');
+      } else {
+        el.classList.add('print-section-hidden');
+      }
+    });
+
+    // 전체문서(전체): 모든 아코디언 펼치기
+    const accordions = document.querySelectorAll('#tab-fullanalysis .accordion-section');
+    const prevStates = [];
+    if (showFullAll) {
+      accordions.forEach(el => {
+        prevStates.push(el.open);
+        el.open = true;
+      });
+    }
+
+    document.body.classList.add('printing-active');
+    modal.classList.add('hidden');
+
+    window.print();
+
+    // Restore
+    document.body.classList.remove('printing-active');
+    if (showFullAll) {
+      accordions.forEach((el, i) => { el.open = prevStates[i]; });
+    }
+    ['briefing', 'deepresearch', 'fullanalysis'].forEach(tab => {
+      const el = document.getElementById('tab-' + tab);
+      if (!el) return;
+      el.classList.remove('print-section-visible', 'print-section-hidden');
+    });
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    const activeBtn = document.querySelector('.tab-btn.active') || document.querySelector('.tab-btn');
+    if (activeBtn) {
+      document.getElementById('tab-' + activeBtn.dataset.tab).classList.remove('hidden');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
